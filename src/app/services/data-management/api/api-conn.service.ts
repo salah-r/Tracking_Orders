@@ -7,8 +7,7 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root',
 })
 export class ApiConnService {
-  apiUrl = 'https://strapi-126631-0.cloudclusters.net/api/';
-  // temp: string = "2f704d2b57e42143483d12b7b58822b57770d64da3e8c06a41414c638489c1832b51cd5acfffa6d42dca8cd2fddff4dc2668ca8ae830bb209c605743990ad27cfc53bfc750b73a2db7701c7eb941b2990a8d2ec6f4a86cabfcea245a267e83f56573910922c9d9a6dbeb109dacf3c4e880aacd77d857ad3db09753af83511503"
+  apiUrl = '';
   temp: string = environment.Token;
 
   apiurl = environment.APIURL;

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './layouts/main/main.component';
 import { FullLayoutComponent } from './layouts/full-layout/full-layout.component';
-import { NumberFooterComponent } from './pages/number-footer/number-footer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },

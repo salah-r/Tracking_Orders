@@ -109,14 +109,12 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { NumberFooterComponent } from './pages/number-footer/number-footer.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
     AppComponent,
 
-    NumberFooterComponent,
     SidebarComponent,
     FullLayoutComponent,
     MainComponent,
