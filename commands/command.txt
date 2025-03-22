@@ -2,6 +2,7 @@ ng build
 git add .
 git commit -m "lastUpdate"
 git push -u origin main
+goksp
 
 firebase deploy -m "lastUpdate" --only hosting
 
