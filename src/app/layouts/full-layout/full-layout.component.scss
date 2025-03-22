@@ -1,0 +1,92 @@
+.main-content {
+  position: relative;
+  z-index: 1;
+  direction: rtl;
+}
+
+.sidebar {
+  flex-basis: 5%; /* Default sidebar width */
+}
+
+.sidebar.expanded {
+  flex-basis: 25%; /* Expanded sidebar width */
+}
+
+.main-area {
+  flex-basis: 90%; /* Default main area width */
+  width: 85%;
+}
+
+.main-area .minimized {
+  flex-basis: 75%; /* Minimized main area width */
+}
+.header-layout {
+  max-width: 100%;
+  background-color: white;
+  border-top-right-radius: 60px;
+  border-top-left-radius: 60px;
+}
+.rest-layout {
+  background-color: white !important;
+  width: 95%;
+  margin: auto;
+  display: block;
+  border-bottom-left-radius: 90px;
+}
+.footer-layout {
+  background-color: white !important;
+}
+@media (max-width: 769px) {
+  .sidebar {
+    display: none; /* Hide sidebar */
+  }
+  .main-content {
+    position: relative;
+  }
+  .header-layout {
+    .fixed-header {
+      position: fixed;
+      z-index: 999;
+      width: 100%;
+    }
+    border-top-left-radius: 60px;
+  }
+
+  // .sidebar.expanded {
+  //display: block; /* Display sidebar when expanded */
+  // position: fixed;
+  //width: 100%; /* Full width */
+  // height: 100%; /* Full height */
+  //top: 0;
+  /* left: 0;
+    z-index: 1;
+    height: 97%;
+    margin-top: 3%;
+    margin-left: 2%;
+    border-top-right-radius: 60px;
+  }
+  .main-area {
+    flex-basis: 100%; /* Full width for main area */
+  /*  }
+  .main-area.minimized {
+    flex-basis: 100%; /* Maintain full width when minimized */
+}
+.menubar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: aliceblue;
+  z-index: 1001; // Ensure it overlays above all other content
+  border-radius: 0%;
+}
+@media (max-width: 1030px) {
+  .rest-layout {
+    background-color: white !important;
+    width: 080%;
+    margin: auto;
+    display: block;
+    border-bottom-left-radius: 90px;
+  }
+}

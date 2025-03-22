@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+// @import "tailwindcss/base" layer(tailwindcss);
+
+// @import "tailwindcss/components" layer(tailwindcss);
+
+// @import "tailwindcss/utilities" layer(tailwindcss);
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Vazirmatn&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap");
+
+// @font-face {
+//   font-family: "Poppins";
+
+//   src: url("../src/assets/fonts/Poppins-Regular.ttf") format("truetype");
+//   font-weight: normal;
+//   font-style: normal;
+// }
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../src/assets/fonts/Cairo-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Cairo";
+  src: url("../src/assets/fonts/Cairo-Medium.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+//1b3d71 color
+// e4bd8a bottont color
+// 2e94c7 light color
+// 4c6b97
+/* Apply Poppins font to body or any other elements */
+
+:root {
+  // --DcodzPurple: #350f74;
+  --DcodzPurple: #004137;
+  // --DcodzLightBlue: #4364f1;
+  --DcodzYellow: #dfb223;
+  // --DcodzYellow: #e9bd2d;
+  --DcodzPink: #d10592;
+  // --DcodzGrey:#EEF1F7;
+  // --DcodzGrey: white;
+  --DcodzGrey: #444444;
+  // #f3f3f3;
+}
+
+* {
+  font-family: "Cairo", sans-serif;
+  color: black;
+  font-size: medium;
+}
+
+.DcodzremoveBTN {
+  .p-button.p-element {
+    background: var(--DcodzYellow);
+    border: none;
+  }
+}
+
+.DcodzaddBTN {
+  .p-button.p-element {
+    background: var(--DcodzLightBlue);
+    color: white;
+    border: none;
+  }
+}
+
+.mainPage {
+  .sidebar {
+    .p-sidebar-icon {
+      margin-left: 0;
+      margin-inline-start: auto;
+    }
+
+    chevronrighticon,
+    anglerighticon {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}

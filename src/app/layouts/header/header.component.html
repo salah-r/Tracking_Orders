@@ -1,0 +1,83 @@
+<header
+  class="tw-flex-row tw-justify-center tw-items-start tw-gap-40 tw-h-10 tw-mt-9 tw-block tw-w-full"
+>
+  <div
+    class="tw-flex tw-flex-row tw-justify-start tw-items-center tw-gap-4 tw-w-full"
+  >
+    <button
+      style="background-color: rgb(255, 255, 255)"
+      class="toggle-btn tw-cursor-pointer tw-border-0 tw-transition-all tw-duration-300 hover:tw-py-2"
+      (click)="toggleSidebar()"
+    >
+      <i class="pi pi-bars tw-font-bold tw-text-2xl"></i>
+    </button>
+    <div>
+      <h4 class="tw-text-3xl tw-font-bold tw-font-oblique">Ruya Dashboard</h4>
+    </div>
+    <!-- <div class="tw-relative">
+      <div class="mark-drop-down tw-cursor-pointer" (click)="toggleDropdown()">
+        <i
+          [class.pi-chevron-down]="!isDropdownOpen"
+          [class.pi-chevron-up]="isDropdownOpen"
+          class="pi tw-text-2xl tw-font-bold"
+        ></i>
+      </div>
+      <div
+        *ngIf="isDropdownOpen"
+        class="tw-bg-white tw-shadow-md tw-rounded tw-mt-2 tw-p-2 tw-w-max tw-absolute"
+      >
+        <ul class="tw-list-none tw-m-0 tw-p-2">
+          <li class="tw-mb-2" routerLinkActive="active">
+            <a
+              routerLink="/drivers"
+              class="tw-text-black"
+              (click)="onLinkClick()"
+              >drivers</a
+            >
+          </li>
+          <li class="tw-mb-2" routerLinkActive="active">
+            <a
+              routerLink="/customers"
+              class="tw-text-black"
+              (click)="onLinkClick()"
+              >customers</a
+            >
+          </li>
+          <li class="tw-mb-2" routerLinkActive="active">
+            <a routerLink="/tours" class="tw-text-black" (click)="onLinkClick()"
+              >tours</a
+            >
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/trips" class="tw-text-black" (click)="onLinkClick()"
+              >trips</a
+            >
+          </li>
+          <li routerLinkActive="active">
+            <a
+              routerLink="/bookings"
+              class="tw-text-black"
+              (click)="onLinkClick()"
+              >bookings</a
+            >
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/tests" class="tw-text-black" (click)="onLinkClick()"
+              >tests</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div> -->
+  </div>
+  <!-- <div
+    class="search-container tw-flex tw-items-center tw-border tw-border-blue-600 tw-rounded-full tw-py-1 tw-px-2 tw-bg-white"
+  >
+    <input
+      type="text"
+      placeholder="Search"
+      class="custom-placeholder tw-outline-none tw-flex-1 tw-text-lg tw-font-bold tw-placeholder-blue-600"
+    />
+    <i class="pi pi-search tw-text-blue-600 tw-text-2xl"></i>
+  </div> -->
+</header>

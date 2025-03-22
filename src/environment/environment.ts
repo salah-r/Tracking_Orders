@@ -1,0 +1,5 @@
+export const environment = {
+  APIURL: 'https://strapi-183963-0.cloudclusters.net/api',
+  Token:
+    '728ac3852d692a5e6ed3c4eaaf7715f5d207f1621b2984c2cb5e825f7c8f86d55723a9076e86df16484decaf1fc7d1e41d8dc665241ba819b5a18b030437071647d3c680f9c649de684a1f371c2dd76bc7e5fd779b67677a2373913c3ca1bbdacf8dd311191fb5ee1fa2db1371858cbb9de7faa5eae4bff504087088d40e6754',
+};
