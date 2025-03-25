@@ -110,6 +110,12 @@ import { LoadingInterceptor } from './shared/interceptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { register } from 'swiper/element/bundle';
+import { OrderDetailsComponent } from './pages/order-details/order-details.component';
+
+register();
 
 @NgModule({
   declarations: [
@@ -121,8 +127,13 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     MenuBarComponent,
     HeaderComponent,
     SignInComponent,
+    HomeComponent,
+    OrderDetailsComponent,
 
   ],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
+
   imports: [
     BrowserModule,
     AppRoutingModule,
