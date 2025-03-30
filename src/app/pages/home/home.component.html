@@ -44,8 +44,8 @@
       </div>
     </div>
 
-    <div class="tw-absolute tw-top-4 tw-left-4 logo-container header-section ">
-      <img class="loginBtn" src="../../../assets/images/login_btn.png" alt="">
+    <div *ngIf="isLoggedIn == false" class="tw-absolute tw-top-4 tw-left-4 logo-container header-section ">
+      <img (click)="goLogin()" class="loginBtn" src="../../../assets/images/login_btn.png" alt="">
     </div>
   </div>
 

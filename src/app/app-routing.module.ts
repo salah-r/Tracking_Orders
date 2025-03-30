@@ -7,7 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'signin', component: SignInComponent },
   { path: 'home', component: HomeComponent },
   { path: 'order-details', component: OrderDetailsComponent },

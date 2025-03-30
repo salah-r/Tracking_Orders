@@ -1,4 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/authService/auth.service';
 import { Swiper } from 'swiper';
 
 @Component({
@@ -11,8 +13,27 @@ export class HomeComponent {
 
   events: any[] = []; // Your events array
   serverUrl: string = 'your-server-url';
+  isLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.checkIfLogin()
+
+  }
+
+
+  checkIfLogin() {
+    let Token = localStorage.getItem("auth_token")
+    if (Token) {
+
+      this.isLoggedIn = true
+
+    }
+  }
 
   onSlideChange(event: any) {
     // console.log('slide change', event);
@@ -26,5 +47,9 @@ export class HomeComponent {
   ngAfterViewInit() {
     // You can access the Swiper instance here if needed
     const swiperInstance: Swiper = this.swiperContainer?.nativeElement.swiper;
+  }
+
+  goLogin() {
+    this.router.navigate(['/signin'])
   }
 }
