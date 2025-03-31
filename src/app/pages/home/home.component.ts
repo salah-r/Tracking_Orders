@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { Swiper } from 'swiper';
+import { ShipmentsService } from './service/shipmentService/shipments.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,9 +16,12 @@ export class HomeComponent {
   events: any[] = []; // Your events array
   serverUrl: string = 'your-server-url';
   isLoggedIn: boolean = false;
+  shipmentId: any;
+  errorMessage: string;
 
   constructor(
     private authService: AuthService,
+    private shipmentsService: ShipmentsService,
     private router: Router
   ) { }
 
@@ -34,6 +39,38 @@ export class HomeComponent {
 
     }
   }
+
+  getTheShipmentData() {
+    console.log(this.shipmentId);
+    let userEmail = localStorage.getItem('user_data')
+    this.checkShipmentOwner(this.shipmentId)
+
+  }
+  checkShipmentOwner(id: any) {
+    this.shipmentsService.checkShipmentNumber(id).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        if (res != null) {
+          this.router.navigate(['/order-details'],
+            { state: { data: res } });
+          this.errorMessage = ''
+        }
+        else {
+          console.log('forbidden request');
+          this.errorMessage = `Forbidden Request >  Not Allowed`
+          console.log(this.errorMessage);
+        }
+
+      },
+      error: (err: any) => {
+        this.errorMessage = `${err} >  Not Allowed`
+        console.log(this.errorMessage);
+
+
+      }
+    })
+  }
+
 
   onSlideChange(event: any) {
     // console.log('slide change', event);

@@ -16,22 +16,20 @@
 
 
           <span
-            class=" sm:tw-text-xs tw-items-center tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965
-            777 738
-            640</span>
-          <span class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965
-            514 38
-            214</span>
-          <span class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965
-            991 085
-            51</span>
+            class=" sm:tw-text-xs tw-items-center tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965777738640</span>
+          <span
+            class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96551438214</span>
+          <span
+            class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96599108551</span>
         </div>
       </div>
     </div>
 
     <div class="tw-text-white tw-text-sm tw-absolute username tw-top-8 tw-left-4 logo-container header-section ">
 
-      اسم المستخدم
+
+
+      {{shipmentData.customerName | slice:0:10}}
 
     </div>
 
@@ -46,122 +44,80 @@
 
     <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
       <span>اسم العميل</span>
-      <p class="tw-m-0"> اسم العميل</p>
+      <p class="tw-m-0"> {{shipmentData.customerName | slice:0:10}}
+      </p>
     </div>
 
     <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
       <span>الرقم المرجعي للشحنة</span>
-      <p class="tw-m-0 process-number"> 3520A-452354</p>
+      <p class="tw-m-0 process-number"> {{shipmentData.trackingNumber}}</p>
     </div>
     <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
       <span>رقم الشحنة الفرعية</span>
-      <p class="tw-m-0"> 23/7/2025</p>
+      <p class="tw-m-0"> {{shipmentData.trackingNumber}}</p>
     </div>
 
     <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
       <span>التاريخ المتوقع للوصول</span>
-      <p class="tw-m-0"> 23/7/2025</p>
+      <p class="tw-m-0">{{shipmentData.expectedDeliveryDate | date:'dd/MM/yyyy'}}</p>
     </div>
     <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
       <span>حالة الشحنة</span>
-      <p class="status tw-m-0"> قيد التقدم</p>
+      <p *ngIf="shipmentData.status=='Pending'" class="status tw-m-0"> قيد التقدم</p>
+      <p *ngIf="shipmentData.status!='Pending'" class="status tw-m-0"> تم التسليم </p>
     </div>
   </div>
 </div>
 
 <div class="content tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
 
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+  <div *ngFor="let item of shipmentData.statusHistory"
+    class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات المكان</p>
     <div class="tw-flex container  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_location.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب العنوان التفصيلي للموقع</p>
+        <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
+        <p class="tw-m-0 tw-text-sm">{{item.location}}</p>
       </div>
 
     </div>
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_location.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب العنوان التفصيلي للموقع</p>
-      </div>
 
-    </div>
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_location.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب العنوان التفصيلي للموقع</p>
-      </div>
 
-    </div>
 
   </div>
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+  <div *ngFor="let item of shipmentData.statusHistory"
+    class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات تاريخ الوصول</p>
     <div class="tw-flex container  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_calender.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">25/7/2025</p>
+        <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
+        <p class="tw-m-0 tw-text-sm">{{item.date |date:'dd/MM/yyyy'}}</p>
       </div>
 
     </div>
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_calender.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">25/7/2025</p>
-      </div>
 
-    </div>
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_calender.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">25/7/2025</p>
-      </div>
 
-    </div>
 
   </div>
 
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+  <div *ngFor="let item of shipmentData.statusHistory"
+    class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
     <div class="tw-flex container tw-items-center tw-justify-between  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_list.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب عنوان الملاحظة</p>
+        <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
+        <p class="tw-m-0 tw-text-sm">{{item.notes|slice:0:8}}</p>
       </div>
-      <img (click)="showDialog()" style="width: 24px; height: 24px; cursor: pointer;"
+      <img (click)="showDialog(item.notes)" style="width: 24px; height: 24px; cursor: pointer;"
         src="../../../assets/images/arrow-left.png" alt="">
 
     </div>
-    <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_list.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب عنوان الملاحظة</p>
 
-      </div>
-      <img (click)="showDialog()" style="width: 24px; height: 24px; cursor: pointer;"
-        src="../../../assets/images/arrow-left.png" alt="">
-
-
-    </div>
-    <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../assets/images/content_list.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب عنوان الملاحظة</p>
-      </div>
-      <img (click)="showDialog()" style="width: 24px; height: 24px; cursor: pointer;"
-        src="../../../assets/images/arrow-left.png" alt="">
-
-    </div>
 
   </div>
 
@@ -173,9 +129,6 @@
 <p-dialog header="هنا يكتب عنوان الملاحظة" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
   [draggable]="false" [resizable]="false" [dismissableMask]="true">
   <p class="tw-text-sm tw-m-0">
-    تم شحن طلبك عبر شركة الشحن الدولية فاست إكسبرس ضمن الشحنة رقم 987654321، ويتم حالياً تجهيز الطلب للنقل إلى مركز
-    التوزيع الأقرب إلى عنوانك، يرجى متابعة حالة الشحنة عبر الرابط المخصص باستخدام رقم التتبع، مع العلم أن مدة الشحن قد
-    تختلف بحسب موقعك الجغرافي وظروف الشحن المحلية والدولية، كما قد تطرأ تأخيرات خارجة عن إرادتنا نتيجة عوامل الطقس
-    أو الضغط على شركات الشحن في أوقات الذروة، ونؤكد على أهمية التأكد من صحة بيانات التوصيل لتفادي أي تأخير إضافي
+    {{currendNotes}}
   </p>
 </p-dialog>

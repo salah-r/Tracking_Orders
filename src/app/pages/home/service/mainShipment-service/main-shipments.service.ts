@@ -6,7 +6,7 @@ import { ApiConnService } from 'src/app/services/data-management/api/api-conn.se
 export class MainShipmentsService {
   constructor(private apiConnService: ApiConnService) { }
 
-  endPoint: string = 'MainShipment';
+  endPoint: string = 'api/MainShipment';
 
 
 

@@ -57,14 +57,15 @@
 
     <div class="tw-flex tw-gap-4 tw-justify-center">
       <div class="p-inputgroup">
-        <button class="p-button">
+        <button (click)="getTheShipmentData()" class="p-button">
           <i style="color: white;" class="pi pi-arrow-circle-left"></i>
           <span style="font-size: 22px; color: white;">تتبع</span>
         </button>
-        <input class="p-inputtext" placeholder="ادخل رقم الشحنة" />
+        <input class="p-inputtext" [(ngModel)]="shipmentId" placeholder="ادخل رقم الشحنة" />
         <img class="box" src="../../../assets/images/box_icon.png" alt="">
       </div>
     </div>
+    <div class="tw-text-black tw-text-xl">{{errorMessage}}</div>
   </div>
 
   <!-- Shipment count -->
