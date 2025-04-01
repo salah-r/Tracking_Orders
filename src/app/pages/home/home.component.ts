@@ -41,11 +41,48 @@ export class HomeComponent {
   }
 
   getTheShipmentData() {
-    console.log(this.shipmentId);
-    let userEmail = localStorage.getItem('user_data')
-    this.checkShipmentOwner(this.shipmentId)
+    // console.log(this.shipmentId);
+    let token = localStorage.getItem('auth_token')
+    if (token) {
+      const loginTime = localStorage.getItem('loginTime');
+      if (this.isSessionExpired(loginTime)) {
+        console.log('Session expired - more than 2 hours passed');
+        // this.renewToken(token)
+        this.goLogin() // untill renew token function is completedd
+
+      } else {
+        console.log('Session still valid');
+        this.checkShipmentOwner(this.shipmentId)
+
+      }
+
+    } else {
+      this.goLogin()
+    }
+
+
+
 
   }
+
+  isSessionExpired(loginTime: any) {
+    if (!loginTime) return true;
+
+    const loginDateTime: number = new Date(loginTime).getTime();
+    const currentTime: number = new Date().getTime();
+
+    const timeDifference = currentTime - loginDateTime;
+
+    const hoursDifference = timeDifference / (1000 * 60 * 60);
+
+    return hoursDifference > 2;
+  }
+
+
+  renewToken(token: any) {
+    this.authService.refreshToken()
+  }
+
   checkShipmentOwner(id: any) {
     this.shipmentsService.checkShipmentNumber(id).subscribe({
       next: (res: any) => {

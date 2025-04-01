@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { LoginCredentials } from 'src/app/interfaces/login-credentials';
 import { LoginResponse } from 'src/app/interfaces/login-response';
 import { environment } from 'src/environment/environment.prod';
+import { ApiConnService } from '../data-management/api/api-conn.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class AuthService {
   private tokenKey = 'auth_token';
   private userKey = 'user_data';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient
+    ,
+    private apiCon: ApiConnService
+  ) { }
 
   login(credentials: LoginCredentials): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${this.apiUrl}`, credentials)
@@ -28,7 +32,34 @@ export class AuthService {
   private storeAuthData(response: LoginResponse): void {
     localStorage.setItem(this.tokenKey, response.token);
     localStorage.setItem(this.userKey, JSON.stringify(response.email));
+    localStorage.setItem('loginTime', new Date().toLocaleString());
+    localStorage.setItem('refreshToken', response.refreshToken);
   }
+
+
+
+
+  refreshToken = async () => {
+    let currentToken = localStorage.getItem('auth_token')
+    let refreshToken = localStorage.getItem('refreshToken')
+
+    let body = {
+      token: currentToken,
+      refreshToken: refreshToken
+    }
+
+    this.apiCon.addNewToken(`${this.apiUrl}/revoke-refresh-token`, body, refreshToken).subscribe({
+      next: (res: any) => {
+        console.log(res);
+
+      },
+      error: (err: any) => {
+        console.log(err);
+
+      }
+    })
+  };
+
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);

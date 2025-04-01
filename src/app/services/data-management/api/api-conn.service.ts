@@ -104,6 +104,28 @@ export class ApiConnService {
         })
       );
   }
+  addNewToken(endPoint: string, newData: any, newToken: any) {
+    return this.http
+      .post(
+        `${this.apiurl}/${endPoint}`,
+        newData,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + newToken,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
 
   updateData(endPoint: string, id: number, updatedData: any) {
     return this.http
