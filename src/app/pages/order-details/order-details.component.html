@@ -6,21 +6,21 @@
     </div>
 
     <!-- Contact info -->
-    <div class="tw-absolute tw-top-8 tw-right-24 contact-info header-section">
+    <div class=" null tw-absolute tw-top-8 tw-right-24 contact-info header-section">
       <div class="tw-flex  tw-items-center tw-content-center tw-gap-4 tw-text-white">
         <img style="width: 3.4vw;" src="../../../assets/images/order_details_clock.png" alt="">
-        <span class="tw-text-sm tw-text-white sm:tw-text-xs ">من الاحد الى الجمعة من الساعة 9:00 صباحا حتى 4:00 بعد
+        <span class=" tw-text-sm tw-text-white sm:tw-text-xs ">من الاحد الى الجمعة من الساعة 9:00 صباحا حتى 4:00 بعد
           الظهر</span>
         <div class="tw-flex tw-gap-2 tw-align-middle tw-items-center   tw-content-center">
           <img style="width: 3.4vw;" src="../../../assets/images/order_details_call.png" alt="">
 
 
           <span
-            class=" sm:tw-text-xs tw-items-center tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965777738640</span>
+            class="  sm:tw-text-xs tw-items-center tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+965777738640</span>
           <span
-            class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96551438214</span>
+            class="  sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96551438214</span>
           <span
-            class=" sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96599108551</span>
+            class="  sm:tw-text-xs tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto tw-text-white">+96599108551</span>
         </div>
       </div>
     </div>
@@ -38,33 +38,38 @@
   <div class="order-details tw-flex">
     <div class="tw-flex tw-justify-center tw-items-center">
       <img class="tw-mx-2" style="width: 35px; height: 35px; ;" src="../../../assets/images/arrow-right.png" alt="">
-      <p class="tw-m-0">معلومات الشحنة
+      <p class="tw-m-0 tw-flex-nowrap tw-flex">معلومات الشحنة
         العامة</p>
     </div>
 
-    <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
-      <span>اسم العميل</span>
-      <p class="tw-m-0"> {{shipmentData.customerName | slice:0:10}}
-      </p>
-    </div>
+    <div class="tw-flex  wrapped">
 
-    <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
-      <span>الرقم المرجعي للشحنة</span>
-      <p class="tw-m-0 process-number"> {{shipmentData.trackingNumber}}</p>
-    </div>
-    <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
-      <span>رقم الشحنة الفرعية</span>
-      <p class="tw-m-0"> {{shipmentData.trackingNumber}}</p>
-    </div>
 
-    <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
-      <span>التاريخ المتوقع للوصول</span>
-      <p class="tw-m-0">{{shipmentData.expectedDeliveryDate | date:'dd/MM/yyyy'}}</p>
-    </div>
-    <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
-      <span>حالة الشحنة</span>
-      <p *ngIf="shipmentData.status=='Pending'" class="status tw-m-0"> قيد التقدم</p>
-      <p *ngIf="shipmentData.status!='Pending'" class="status tw-m-0"> تم التسليم </p>
+
+      <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
+        <span>اسم العميل</span>
+        <p class="tw-m-0"> {{shipmentData.customerName | slice:0:10}}
+        </p>
+      </div>
+
+      <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
+        <span>الرقم المرجعي للشحنة</span>
+        <p class="tw-m-0 process-number"> {{shipmentData.trackingNumber}}</p>
+      </div>
+      <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
+        <span>رقم الشحنة الفرعية</span>
+        <p class="tw-m-0"> {{shipmentData.trackingNumber}}</p>
+      </div>
+
+      <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
+        <span>التاريخ المتوقع للوصول</span>
+        <p class="tw-m-0">{{shipmentData.expectedDeliveryDate | date:'dd/MM/yyyy'}}</p>
+      </div>
+      <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
+        <span>حالة الشحنة</span>
+        <p *ngIf="shipmentData.status=='Pending'" class="status tw-m-0"> قيد التقدم</p>
+        <p *ngIf="shipmentData.status!='Pending'" class="status tw-m-0"> تم التسليم </p>
+      </div>
     </div>
   </div>
 </div>
@@ -75,7 +80,7 @@
   <div *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات المكان</p>
-    <div class="tw-flex container  details tw-my-2">
+    <div *ngIf="shipmentData.statusHistory.length>0" class="tw-flex container  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_location.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
         <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
@@ -83,6 +88,7 @@
       </div>
 
     </div>
+    <img *ngIf="shipmentData.statusHistory.length==0" src="../../../assets/images/noplace.png" alt="">
 
 
 
@@ -91,7 +97,7 @@
   <div *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات تاريخ الوصول</p>
-    <div class="tw-flex container  details tw-my-2">
+    <div *ngIf="shipmentData.statusHistory.length>0" class="tw-flex container  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_calender.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
         <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
@@ -100,6 +106,8 @@
 
     </div>
 
+    <img *ngIf="shipmentData.statusHistory.length==0" src="../../../assets/images/nodate.png" alt="">
+
 
 
   </div>
@@ -107,7 +115,8 @@
   <div *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
-    <div class="tw-flex container tw-items-center tw-justify-between  details tw-my-2">
+    <div *ngIf="shipmentData.statusHistory.length>0"
+      class="tw-flex container tw-items-center tw-justify-between  details tw-my-2">
       <img style="width: 50px; height: 50px;" src="../../../assets/images/content_list.png" alt="">
       <div class="tw-flex-col tw-mr-2  tw-flex">
         <span style="font-size: 8px; color: #89898A;">{{item.date |date:'dd/MM/yyyy'}}</span>
@@ -117,6 +126,9 @@
         src="../../../assets/images/arrow-left.png" alt="">
 
     </div>
+
+    <img *ngIf="shipmentData.statusHistory.length==0" src="../../../assets/images/nonotes.png" alt="">
+
 
 
   </div>

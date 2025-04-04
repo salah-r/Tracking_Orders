@@ -72,3 +72,41 @@ input {
 .pointer {
   cursor: pointer;
 }
+
+
+
+@media screen and (max-width: 768px) {
+
+
+  .icon {
+    width: 30px !important;
+  }
+
+  .tw-pr-14 {
+    padding-right: 45PX !important;
+  }
+
+  .card {
+    width: 90% !important;
+
+    .signIn-logo {
+      width: 20vw !important;
+    }
+
+
+
+  }
+
+  .forgetPass {
+    width: 95% !important;
+  }
+
+
+
+
+
+
+
+
+
+}

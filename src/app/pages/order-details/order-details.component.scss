@@ -117,6 +117,9 @@
 
 // Media queries for responsiveness
 @media (max-width: 768px) {
+
+
+
   .contact-info {
     right: 100px;
     font-size: 12px;
@@ -257,4 +260,27 @@ span {
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
+}
+
+@media screen and (max-width:768px) {
+  .null {
+    display: none;
+  }
+
+  .order-details {
+    flex-wrap: wrap;
+    height: fit-content !important;
+    padding-bottom: 10px !important;
+  }
+
+  .wrapped {
+    flex-wrap: wrap;
+  }
+
+  .logo-container {
+    img {
+      width: 70px !important;
+      margin-right: 10px !important;
+    }
+  }
 }

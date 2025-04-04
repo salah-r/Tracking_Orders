@@ -238,7 +238,7 @@
 
 .p-inputtext {
   flex: 1;
-  padding: 12px 50px;
+  padding: 12px 50px 12px 2px;
   border: none;
   font-size: 16px;
   background: white;
@@ -302,4 +302,153 @@
   height: 1px !important;
   background-color: white !important;
   width: 100%;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .null {
+    display: none;
+  }
+
+  .tw-top-4 {
+    top: 14px;
+  }
+
+  .header-section {
+    margin-top: 2vh !important;
+  }
+
+  .logo-container>.logo {
+    width: 11vw !important;
+  }
+
+  .logo-container>.loginBtn {
+    width: 20vw !important;
+  }
+
+  ::ng-deep div.p-inputgroup {
+    height: 7.6vh !important;
+  }
+
+  .box {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
+  h1 {
+    margin-top: -30px !important;
+  }
+
+  .tw-bottom-7 {
+    bottom: 2.75rem;
+  }
+
+  .tw-left-7 {
+    left: .75rem;
+  }
+
+  .imageSection {
+    width: 90Vw !important;
+    margin: auto;
+    flex-direction: column;
+    flex-wrap: wrap !important;
+  }
+
+  .biggerImage {
+    width: 88vw !important;
+    margin: auto;
+    height: 50vh !important;
+  }
+
+  .smallerImages {
+    flex-direction: row !important;
+    gap: 20px;
+
+    img {
+      width: 40vw !important;
+    }
+  }
+
+  .tw-text-4xl {
+    font-size: 22px !important;
+    margin-top: 2vh !important;
+  }
+
+  .textSection {
+    p {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    div {
+      div {
+        img {
+          width: 60px !important;
+        }
+
+        p {
+          font-size: 12px !important;
+        }
+      }
+    }
+
+    .tw-my-3 {
+      .correct {
+        width: 24px !important;
+      }
+    }
+
+
+
+
+
+  }
+
+
+
+  .footer {
+
+    .mobile-col {
+      flex-direction: column !important;
+    }
+
+    .footerRightSec {
+      margin-top: 30px !important;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        font-size: 14px !important;
+      }
+
+      img {
+        width: 16.5vh !important;
+      }
+    }
+
+    .footerLeftSec {
+      text-align: right !important;
+
+      .tw-text-sm {
+        font-size: 12px !important;
+        text-align: right !important;
+      }
+    }
+
+
+    div {
+      width: 95%;
+      margin: auto;
+      text-align: center;
+    }
+  }
+
+
+  .secondPage {
+    flex-wrap: wrap !important;
+  }
 }
