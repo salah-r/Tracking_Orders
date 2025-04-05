@@ -433,12 +433,30 @@
     .footerLeftSec {
       text-align: right !important;
 
+      div {
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+      }
+
+      h2 {
+        font-size: 23px !important;
+      }
+
       .tw-text-sm {
         font-size: 12px !important;
         text-align: right !important;
       }
+
+      img {
+        width: 30px !important;
+      }
     }
 
+    .copy-rights {
+      font-size: 12px !important;
+      font-weight: 400 !important;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
 
     div {
       width: 95%;

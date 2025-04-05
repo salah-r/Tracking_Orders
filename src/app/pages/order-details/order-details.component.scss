@@ -196,6 +196,7 @@
 
 .header {
   background-image: url(../../../assets/images/headerBG.png);
+  background-position: center center;
 }
 
 .username {
@@ -262,7 +263,7 @@ span {
   -o-border-radius: 10px;
 }
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:1023px) {
   .null {
     display: none;
   }
@@ -282,5 +283,12 @@ span {
       width: 70px !important;
       margin-right: 10px !important;
     }
+  }
+
+  .header {
+    height: fit-content !important;
+    padding-bottom: 20px !important;
+    background-size: cover;
+    background-position: center center;
   }
 }
