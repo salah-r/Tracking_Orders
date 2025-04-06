@@ -41,7 +41,7 @@
   color: white;
   text-align: center;
   width: 25vw;
-  bottom: -4px !important;
+  bottom: -2px !important;
   height: 11.2vh;
   align-content: center;
   -webkit-border-radius: 25px !important;
@@ -64,7 +64,7 @@
 .contact-info {
   z-index: 10;
   width: auto;
-  right: 120px;
+  right: 8.5vw;
 
   span {
     white-space: nowrap;
@@ -304,6 +304,28 @@
   width: 100%;
 }
 
+@media screen and (min-width: 2300px) {
+
+  .logo {
+    margin-top: 20px !important;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+
+  .tw-right-24 {
+    right: 110px !important;
+  }
+}
+
+
+
+@media screen and (min-width: 1850px) {
+
+  .logo {
+    margin-top: 10px;
+  }
+}
 
 @media screen and (max-width: 768px) {
 
