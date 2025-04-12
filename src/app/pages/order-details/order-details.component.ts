@@ -10,6 +10,8 @@ export class OrderDetailsComponent {
   visible: boolean = false;
   shipmentData: any;
   currendNotes: any;
+
+
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { data: any };

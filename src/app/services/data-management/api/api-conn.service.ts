@@ -22,6 +22,31 @@ export class ApiConnService {
 
   }
 
+
+  fristGetData(endPoint: string, Token: any): Observable<any> {
+    return this.http
+      .get<any>(
+        `${this.apiurl}/${endPoint}`,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + Token,
+          },
+        }
+        // httpOptions
+      )
+      .pipe(
+        retry(2),
+        catchError((err) => {
+          console.error(err);
+          return throwError(() => new Error(this.errorMessage));
+        })
+      );
+  }
+
+
+
   getData(endPoint: string): Observable<any> {
     return this.http
       .get<any>(

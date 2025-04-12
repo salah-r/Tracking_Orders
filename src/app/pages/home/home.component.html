@@ -53,9 +53,12 @@
       </div>
     </div>
 
-    <div *ngIf="isLoggedIn == false" class="tw-absolute tw-top-4 tw-left-4 logo-container header-section ">
+    <div *ngIf="!isLoggedIn" class="tw-absolute tw-top-4 tw-left-4 logo-container header-section ">
       <img (click)="goLogin()" class="loginBtn" src="../../../assets/images/login_btn.png" alt="">
     </div>
+    <!-- <div *ngIf="isLoggedIn" class="tw-absolute tw-top-4 tw-left-4 logo-container header-section ">
+      <img (click)="logOut()" class="loginBtn" src="../../../assets/images/login_btn.png" alt="">
+    </div> -->
   </div>
 
 

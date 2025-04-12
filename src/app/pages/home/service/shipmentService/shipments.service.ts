@@ -14,8 +14,8 @@ export class ShipmentsService {
     return this.apiConnService.getData(`${this.endPoint}`);
   }
 
-  checkShipmentNumber(trackingNumber: any) {
-    return this.apiConnService.getData(`${this.endPoint}/track/${trackingNumber}`);
+  checkShipmentNumber(trackingNumber: any, Token: any) {
+    return this.apiConnService.fristGetData(`${this.endPoint}/track/${trackingNumber}`, Token);
   }
 
   addShipmentStatus(id: any, data: any) {

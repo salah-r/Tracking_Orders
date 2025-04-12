@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { Swiper } from 'swiper';
 import { ShipmentsService } from './service/shipmentService/shipments.service';
+import { RevokeToken } from 'src/app/interfaces/login-credentials';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class HomeComponent {
   isLoggedIn: boolean = false;
   shipmentId: any;
   errorMessage: string;
+  revokeToken: RevokeToken;
+  token: string;
 
   constructor(
     private authService: AuthService,
@@ -32,11 +35,9 @@ export class HomeComponent {
 
 
   checkIfLogin() {
-    let Token = localStorage.getItem("auth_token")
-    if (Token) {
-
+    this.token = localStorage.getItem("auth_token")
+    if (this.token) {
       this.isLoggedIn = true
-
     }
   }
 
@@ -84,7 +85,7 @@ export class HomeComponent {
   }
 
   checkShipmentOwner(id: any) {
-    this.shipmentsService.checkShipmentNumber(id).subscribe({
+    this.shipmentsService.checkShipmentNumber(id, this.token).subscribe({
       next: (res: any) => {
         console.log(res);
         if (res != null) {
@@ -126,4 +127,31 @@ export class HomeComponent {
   goLogin() {
     this.router.navigate(['/signin'])
   }
+
+  // logOut(): void {
+  //   debugger;
+  //   const token = localStorage.getItem("auth_token");
+  //   const refreshToken = localStorage.getItem("refreshToken");
+  //   debugger;
+  //   if (token && refreshToken) {
+  //     const revokeToken: RevokeToken = {
+  //       token,
+  //       refreshToken
+  //     };
+
+  //     this.authService.Logout(revokeToken).subscribe({
+  //       next: () => {
+  //         localStorage.clear();
+  //         this.router.navigate(['/']);
+  //       },
+  //       error: (err) => {
+  //         console.error('Logout failed:', err);
+  //         // Still clear storage & navigate if logout fails (optional)
+  //         localStorage.clear();
+  //         this.router.navigate(['/']);
+  //       }
+  //     });
+  //   }
+  // }
+
 }

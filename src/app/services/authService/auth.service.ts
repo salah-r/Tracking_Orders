@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { LoginCredentials } from 'src/app/interfaces/login-credentials';
+import { LoginCredentials, RevokeToken } from 'src/app/interfaces/login-credentials';
 import { LoginResponse } from 'src/app/interfaces/login-response';
 import { environment } from 'src/environment/environment.prod';
 import { ApiConnService } from '../data-management/api/api-conn.service';
@@ -27,6 +27,9 @@ export class AuthService {
           this.storeAuthData(response);
         })
       );
+  }
+  Logout(credentials: RevokeToken): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, credentials);
   }
 
   private storeAuthData(response: LoginResponse): void {

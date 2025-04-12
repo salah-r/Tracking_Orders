@@ -1,15 +1,15 @@
-<header
-  class="tw-flex-row tw-justify-center tw-items-start tw-gap-40 tw-h-10 tw-mt-9 tw-block tw-w-full"
->
-  <div
-    class="tw-flex tw-flex-row tw-justify-start tw-items-center tw-gap-4 tw-w-full"
-  >
-    <button
-      style="background-color: rgb(255, 255, 255)"
+<header class="tw-flex-row tw-justify-center tw-items-start tw-gap-40 tw-h-10 tw-mt-9 tw-block tw-w-full">
+  <div class="tw-flex tw-flex-row tw-justify-start tw-items-center tw-gap-4 tw-w-full">
+    <button style="background-color: rgb(255, 255, 255)"
       class="toggle-btn tw-cursor-pointer tw-border-0 tw-transition-all tw-duration-300 hover:tw-py-2"
-      (click)="toggleSidebar()"
-    >
+      (click)="toggleSidebar()">
       <i class="pi pi-bars tw-font-bold tw-text-2xl"></i>
+    </button>
+
+    <button style="background-color: rgb(255, 255, 255)"
+      class="toggle-btn tw-cursor-pointer tw-border-0 tw-transition-all tw-duration-300 hover:tw-py-2"
+      (click)="logOut()">
+      logout
     </button>
     <div>
       <h4 class="tw-text-3xl tw-font-bold tw-font-oblique">Ruya Dashboard</h4>

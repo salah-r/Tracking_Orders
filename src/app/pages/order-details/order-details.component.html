@@ -67,17 +67,70 @@
       </div>
       <div style="margin-right: 3.4vw;" class=" tw-justify-center tw-items-center tw-flex tw-flex-col">
         <span>حالة الشحنة</span>
-        <p *ngIf="shipmentData.status=='Pending'" class="status tw-m-0"> قيد التقدم</p>
-        <p *ngIf="shipmentData.status!='Pending'" class="status tw-m-0"> تم التسليم </p>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='Delivered'">مكتملة</span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='Pending'">جارية </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='Cancelled'">ملغية </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='InProgress'">قيد التقدم </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='InTransit'">في الشحن </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='AtCustoms'">في الجمارك </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='OutForDelivery'">خرج للتسليم </span>
+        <span class="status tw-m-0" *ngIf="shipmentData.status=='Delayed'">مؤجلة </span>
+
       </div>
     </div>
   </div>
 </div>
 
-<div class="content tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
+
+<div class="tw-flex tw-flex-col tw-gap-4">
+  <div *ngFor="let item of shipmentData.statusHistory" class="tw-flex tw-flex-row  tw-flex-wrap">
+
+    <!-- Location Card -->
+    <div class="tw-flex tw-w-full md:tw-w-1/3 tw-flex-col container tw-bg-white tw-p-5">
+      <p class="tw-m-0">تحديثات المكان</p>
+      <div class="tw-flex container details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../assets/images/content_location.png" alt="">
+        <div class="tw-flex-col tw-mr-2 tw-flex">
+          <span style="font-size: 8px; color: #89898A;">{{item.date | date:'dd/MM/yyyy'}}</span>
+          <p class="tw-m-0 tw-text-sm">{{item.location}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Date Card -->
+    <div class="tw-flex tw-w-full md:tw-w-1/3 tw-flex-col container tw-bg-white tw-p-5">
+      <p class="tw-m-0">تحديثات تاريخ الوصول</p>
+      <div class="tw-flex container details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../assets/images/content_calender.png" alt="">
+        <div class="tw-flex-col tw-mr-2 tw-flex">
+          <span style="font-size: 8px; color: #89898A;">{{item.date | date:'dd/MM/yyyy'}}</span>
+          <p class="tw-m-0 tw-text-sm">{{item.date | date:'dd/MM/yyyy'}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Card -->
+    <div class="tw-flex tw-w-full md:tw-w-1/3 tw-flex-col container tw-bg-white tw-p-5">
+      <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
+      <div class="tw-flex container tw-items-center tw-justify-between details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../assets/images/content_list.png" alt="">
+        <div class="tw-flex-col tw-mr-2 tw-flex">
+          <span style="font-size: 8px; color: #89898A;">{{item.date | date:'dd/MM/yyyy'}}</span>
+          <p class="tw-m-0 tw-text-sm">{{item.notes | slice:0:8}}</p>
+        </div>
+        <img (click)="showDialog(item.notes)" style="width: 24px; height: 24px; cursor: pointer;"
+          src="../../../assets/images/arrow-left.png" alt="">
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
-  <div *ngFor="let item of shipmentData.statusHistory"
+<!-- <div class="content tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
+
+
+  <div class="tw-flex tw-flexcol" *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات المكان</p>
     <div *ngIf="shipmentData.statusHistory.length>0" class="tw-flex container  details tw-my-2">
@@ -94,7 +147,7 @@
 
   </div>
 
-  <div *ngFor="let item of shipmentData.statusHistory"
+  <div class="tw-flex tw-flexcol" *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات تاريخ الوصول</p>
     <div *ngIf="shipmentData.statusHistory.length>0" class="tw-flex container  details tw-my-2">
@@ -112,7 +165,7 @@
 
   </div>
 
-  <div *ngFor="let item of shipmentData.statusHistory"
+  <div class="tw-flex tw-flexcol" *ngFor="let item of shipmentData.statusHistory"
     class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
     <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
     <div *ngIf="shipmentData.statusHistory.length>0"
@@ -135,11 +188,11 @@
 
 
 
-</div>
+</div> -->
 
 
-<p-dialog header="هنا يكتب عنوان الملاحظة" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }"
-  [draggable]="false" [resizable]="false" [dismissableMask]="true">
+<p-dialog header="  عنوان الملاحظة" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false" [dismissableMask]="true">
   <p class="tw-text-sm tw-m-0">
     {{currendNotes}}
   </p>
