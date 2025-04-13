@@ -5,27 +5,44 @@
 }
 
 .sidebar {
-  flex-basis: 5%; /* Default sidebar width */
+  flex-basis: 5%;
+  /* Default sidebar width */
 }
 
 .sidebar.expanded {
-  flex-basis: 25%; /* Expanded sidebar width */
+  flex-basis: 17.6vw !important;
+  width: 17.6vw;
+  border-radius: 0% !important;
+  -webkit-border-radius: 0% !important;
+  -moz-border-radius: 0% !important;
+  -ms-border-radius: 0% !important;
+  -o-border-radius: 0% !important;
 }
 
 .main-area {
-  flex-basis: 90%; /* Default main area width */
+  flex-basis: 90%;
+  /* Default main area width */
   width: 85%;
 }
 
 .main-area .minimized {
-  flex-basis: 75%; /* Minimized main area width */
+  flex-basis: 75%;
+  /* Minimized main area width */
 }
+
 .header-layout {
   max-width: 100%;
   background-color: white;
-  border-top-right-radius: 60px;
-  border-top-left-radius: 60px;
+  padding: 1.5vh 3vw;
+  height: 14vh;
+  border-left: 1px solid #EE7203;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(to right, #EE7203, white) 1;
+  // border-top-right-radius: 60px;
+  // border-top-left-radius: 60px;
 }
+
 .rest-layout {
   background-color: white !important;
   width: 95%;
@@ -33,23 +50,29 @@
   display: block;
   border-bottom-left-radius: 90px;
 }
+
 .footer-layout {
   background-color: white !important;
 }
+
 @media (max-width: 769px) {
   .sidebar {
-    display: none; /* Hide sidebar */
+    display: none;
+    /* Hide sidebar */
   }
+
   .main-content {
     position: relative;
   }
+
   .header-layout {
     .fixed-header {
       position: fixed;
       z-index: 999;
       width: 100%;
     }
-    border-top-left-radius: 60px;
+
+    // border-top-left-radius: 60px;
   }
 
   // .sidebar.expanded {
@@ -71,6 +94,7 @@
   .main-area.minimized {
     flex-basis: 100%; /* Maintain full width when minimized */
 }
+
 .menubar-overlay {
   position: fixed;
   top: 0;
@@ -81,6 +105,7 @@
   z-index: 1001; // Ensure it overlays above all other content
   border-radius: 0%;
 }
+
 @media (max-width: 1030px) {
   .rest-layout {
     background-color: white !important;

@@ -1,0 +1,85 @@
+<div style="direction: rtl;" class="tw-flex  tw-flex-col tw-justify-center tw-items-center">
+  <div class="card card tw-w-full tw-mb-10">
+    <p-toast></p-toast>
+
+    <p-toolbar styleClass="mb-4 gap-2">
+      <ng-template pTemplate="end">
+        <div class="tw-flex tw-justify-between tw-w-full ">
+
+          <div class="search-container">
+            <div class="search-bar">
+              <div class="settings-icon">
+
+
+                <p-dropdown (onChange)="getUserID($event)" [options]="filtersList"
+                  class="tw-w-full tw-p-2 tw-border tw-rounded"></p-dropdown>
+                <!-- <img class="pointer" src="../../../../../assets/images/filter.png" alt=""> -->
+              </div>
+
+              <div class="divider"></div>
+
+
+              <img src="../../../../../assets/images/search.png" alt="">
+
+              <input type="text" class="search-input" (input)="onUsersFiter($event)" placeholder="بحث...">
+
+
+
+            </div>
+          </div>
+
+          <button (click)="openNew()" pButton label="إضافة" class="p-button-primary"></button>
+        </div>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="filteredUsers" [rows]="7" [paginator]="true"
+      [globalFilterFields]="['firstName', 'email', 'id', 'address']" styleClass="p-datatable-striped">
+
+
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th class="tw-p-2">اسم المستخدم</th>
+          <th class="tw-p-2">البريد الالكتروني</th>
+          <th class="tw-p-2">رقم الهاتف</th>
+          <th class="tw-p-2">عنوان الشحن</th>
+          <th class="tw-p-2"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="user"></p-tableCheckbox>
+          </td>
+          <td class="tw-p-2">{{user.firstName}}</td>
+          <td class="tw-p-2">{{user.email}}</td>
+          <td class="tw-p-2">{{user.phoneNumber}}</td>
+          <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
+            <img class="pointer" src="../../../../../assets/images/eye.png" alt="">
+            <span class="tw-mr-1 pointer">عرض</span>
+          </td>
+          <td class="tw-p-2">
+            <div class="tw-flex gap-3">
+              <img (click)="editUser(user)" class="pointer " src="../../../../../assets/images/edit.png" alt="">
+              <img (click)="deleteUser(user)" class="pointer" src="../../../../../assets/images/trash.png" alt="">
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+
+<div *ngIf="accountDialogue">
+  <app-cerate-update-account [userDialogeValue]="accountDialogue" [user]="user"
+    (userDialog)="changeDialogStatus($event)" (UpdateData)="UpdateOwnerData($event)">
+  </app-cerate-update-account>
+</div>

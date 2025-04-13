@@ -114,6 +114,12 @@ import { HomeComponent } from './pages/home/home.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { OrderDetailsComponent } from './pages/order-details/order-details.component';
+import { ViewAllAccountsComponent } from './pages/dashboard/accounts/view/view-all-accounts/view-all-accounts.component';
+import { ViewAllShipmentsComponent } from './pages/dashboard/shipments/view/view-all-shipments/view-all-shipments.component';
+import { ViewShipmentDetailsComponent } from './pages/dashboard/detailled-shipment/view/view-shipment-details/view-shipment-details.component';
+
+
+
 
 register();
 
@@ -129,6 +135,9 @@ register();
     SignInComponent,
     HomeComponent,
     OrderDetailsComponent,
+    ViewAllShipmentsComponent,
+    ViewAllAccountsComponent,
+    ViewShipmentDetailsComponent
 
   ],
 

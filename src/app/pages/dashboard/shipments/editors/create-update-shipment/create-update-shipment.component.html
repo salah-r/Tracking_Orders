@@ -1,0 +1,70 @@
+<p-dialog [(visible)]="shipmentDailogueValue" [modal]="true" [style]="{width: '75vw'}" [draggable]="false"
+  [resizable]="false" styleClass="tw-rtl">
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-gap-2">
+      <img src="../../../../../assets/images/big-car.png" alt="">
+      <h2 class="tw-text-lg">إضافة شحنة عامة</h2>
+      <i class="pi pi-times tw-cursor-pointer" (click)="onClose()"></i>
+
+    </div>
+  </ng-template>
+
+  <div class="tw-p-4">
+    <!-- Form Content -->
+    <div [formGroup]="mainShipmentForm" class="tw-space-y-4">
+      <div class="tw-grid tw-grid-cols-2 tw-gap-4">
+        <!-- <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">رقم الشحنة</label>
+          <input formControlName="trackingNumber" type="text"
+            class="tw-w-full tw-p-2 tw-border tw-rounded tw-bg-gray-50">
+        </div> -->
+
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">التاريخ المتوقع للوصول</label>
+          <input pInputText formControlName="expectedDeliveryDate" type="datetime-local"
+            class="tw-w-full tw-p-2 tw-border tw-rounded tw-bg-gray-50">
+        </div>
+
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">الحالة</label>
+          <p-dropdown formControlName="status" optionValue="value" optionLabel="label" [options]="shippingStatus"
+            placeholder="الحالة" styleClass="tw-w-full tw-bg-gray-50">
+          </p-dropdown>
+        </div>
+      </div>
+
+      <div class="tw-text-lg tw-font-medium">عنوان الشحن</div>
+
+      <div class="tw-grid tw-grid-cols-1 tw-gap-4">
+        <!-- <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">البلد</label>
+          <p-dropdown [options]="[]" placeholder="البلد" styleClass="tw-w-full tw-bg-gray-50">
+          </p-dropdown>
+        </div>
+
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">المحافظة</label>
+          <p-dropdown [options]="[]" placeholder="المحافظة" styleClass="tw-w-full tw-bg-gray-50">
+          </p-dropdown>
+        </div> -->
+
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">العنوان التفصيلي</label>
+          <input formControlName="destination" type="text" placeholder="العنوان التفصيلي"
+            class="tw-w-full tw-p-2 tw-border tw-rounded  tw-bg-gray-50">
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button (click)="saveUser()"
+        class="tw-w-1/3 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        إضافة
+      </button>
+    </div>
+  </div>
+
+</p-dialog>

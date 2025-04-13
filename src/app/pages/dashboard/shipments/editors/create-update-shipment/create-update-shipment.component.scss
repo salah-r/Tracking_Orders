@@ -1,0 +1,13 @@
+input {
+  border: 1px solid #00000018;
+}
+
+
+.pi-times {
+  position: absolute;
+  left: 30px;
+}
+
+::ng-deep button.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close.p-link.ng-star-inserted {
+  display: none;
+}

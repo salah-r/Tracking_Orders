@@ -1,7 +1,4 @@
-import { RevokeToken } from './../../interfaces/login-credentials';
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/authService/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +8,7 @@ import { AuthService } from 'src/app/services/authService/auth.service';
 export class HeaderComponent implements OnInit {
   @Input() isSidebarExpanded = false; // Receive sidebar state
   @Output() toggle = new EventEmitter<void>(); // Emit toggle event
-  revokeToken: RevokeToken;
-  constructor(private AuthService: AuthService, private Router: Router) {
 
-  }
   isMobileView = false;
   isDropdownOpen = false;
 
@@ -40,21 +34,5 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy() {
     window.removeEventListener('resize', this.checkScreenWidth.bind(this));
-  }
-
-  logOut() {
-    if (localStorage.getItem("auth_token") && localStorage.getItem("refreshToken")) {
-      this.revokeToken.token = localStorage.getItem("auth_token");
-      this.revokeToken.refreshToken = localStorage.getItem("refreshToken");
-      this.AuthService.Logout(this.revokeToken).subscribe(
-        {
-          next: (res) => {
-            localStorage.clear();
-            this.Router.navigate(['/']);
-          }
-        }
-      );
-
-    }
   }
 }

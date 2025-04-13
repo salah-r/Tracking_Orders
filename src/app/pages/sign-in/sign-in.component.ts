@@ -97,9 +97,18 @@ export class SignInComponent {
 
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          console.log(response);
+          console.log(" Login response", response);
+          let DecodedData = this.authService.decodeToken(response.token)
 
-          this.router.navigate(['/home']);
+          console.log("decoded Token >", DecodedData);
+
+          if (DecodedData.roles[0] == "admin") {
+
+            this.router.navigate(['/accounts']);
+          } else {
+
+            this.router.navigate(['/home']);
+          }
         },
         error: (error) => {
           this.loginError = 'فشل تسجيل الدخول. الرجاء التحقق من اسم المستخدم وكلمة المرور.';

@@ -249,6 +249,162 @@ export class ApiConnService {
         })
       );
   }
+
+  upadteMainShipmentStatus2(endPoint: string, id: any, newData: any) {
+    return this.http
+      .post(
+
+        `${this.apiurl}/${endPoint}/${id}/Status`,
+        newData,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + this.temp,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
+  upadteMainShipmentStatus(endPoint: string, id: any, newData: any) {
+    return this.http
+      .post(
+
+        `${this.apiurl}/${endPoint}/${id}/status`,
+        newData,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + this.temp,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
+
+
+
+  updateMainShipmentData(endPoint: string, id: number, updatedData: any) {
+    return this.http
+      .post(`${this.apiurl}/${endPoint}/UpdateMainShipment/${id}`, updatedData, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Accept: '*/*',
+          Authorization: 'Bearer ' + this.temp,
+        },
+      })
+      .pipe(
+        retry(2),
+        catchError((err) => {
+          console.error(err);
+          return throwError(() => new Error(this.errorMessage));
+        })
+      );
+  }
+  updateExtraShipmentData(endPoint: string, id: number, updatedData: any) {
+    return this.http
+      .post(`${this.apiurl}/${endPoint}/UpdateMainShipment/${id}`, updatedData, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Accept: '*/*',
+          Authorization: 'Bearer ' + this.temp,
+        },
+      })
+      .pipe(
+        retry(2),
+        catchError((err) => {
+          console.error(err);
+          return throwError(() => new Error(this.errorMessage));
+        })
+      );
+  }
+
+  deleteMainShipment(endPoint: string, id: any, newData: any) {
+    return this.http
+      .post(
+
+        `${this.apiurl}/${endPoint}/${id}/status`,
+        newData,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + this.temp,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
+  deleteExtraShipment(endPoint: string, id: any, cancelReason: any, data: any) {
+    return this.http
+      .post(
+
+        `${this.apiurl}/${endPoint}/${id}/cancel?cancellationReason=${cancelReason}`,
+        data,
+
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + this.temp,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
+
+  deleteUser(endPoint: string, id: any, newData: any) {
+    return this.http
+      .post(
+
+        `${this.apiurl}/${endPoint}/${id}/toggle-status`,
+        newData,
+        {
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            Accept: '*/*',
+            Authorization: 'Bearer ' + this.temp,
+          },
+        }
+      )
+      .pipe(
+        // retry(2),
+        catchError((err) => {
+          console.error(err.error.code);
+          //var code = err.error.code;
+          return throwError(() => new Error(err.error.code));
+        })
+      );
+  }
 }
 
 

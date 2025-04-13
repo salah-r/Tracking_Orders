@@ -1,0 +1,535 @@
+<div style="direction: rtl;" class="main-shipment tw-flex tw-justify-between tw-relative">
+  <img (click)="goBack()" class="pointer" style="position:absolute; top: -5px; right: -5px;"
+    src="../../../../../assets/images/backbtn.png" alt="">
+
+
+  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center margin-right">
+    <span>رقم الشحنة</span>
+    <span class="orange">{{mainShipment?.trackingNumber}}</span>
+  </div>
+  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+    <span>التاريخ المتوقع للوصول</span>
+    <span class="orange">{{mainShipment.expectedDeliveryDate}}</span>
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+    <span>الوجهة</span>
+    <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
+
+      <img (click)="showDestinationDialog(mainShipment)" class="pointer" src="../../../../../assets/images/eye.png"
+        alt="">
+      <span (click)="showDestinationDialog(mainShipment)" class=" tw-mr-1 pointer">عرض</span>
+      <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+        [resizable]="false">
+
+        <ng-template pTemplate="header">
+          <div class="tw-flex tw-items-center tw-relative  tw-gap-2">
+            <img src="../../../../../assets/images/addbox.png" alt="">
+            <h2 class="tw-text-lg">المعلومات</h2>
+            <i style="left: 30px; position:fixed ;" class="pi pi-times tw-cursor-pointer" (click)="closeDialogue()"></i>
+
+          </div>
+        </ng-template>
+
+        <p>
+          {{destination}}
+        </p>
+
+
+      </p-dialog>
+    </div>
+
+  </div>
+
+  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+    <span>الحالة</span>
+    <div class="status">
+      <i class="pi pi-circle-on dot-icon"></i>
+      <span *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
+      <span *ngIf="mainShipment.status=='Pending'">جارية </span>
+      <span *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
+      <span *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
+      <span *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
+      <span *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
+      <span *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
+      <span *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
+
+    </div>
+  </div>
+
+</div>
+
+<div style="direction: rtl;" class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+  <div class="card card tw-w-full tw-mb-10">
+    <p-toast></p-toast>
+
+    <p-toolbar styleClass="mb-4 gap-2">
+      <ng-template pTemplate="end">
+        <div class="tw-flex tw-justify-between tw-w-full tw-relative tw-items-center  ">
+
+          <div class="search-container">
+            <div class="search-bar">
+              <!-- <div class="settings-icon">
+                <img class="pointer" src="../../../../../assets/images/filter.png" alt="">
+              </div> -->
+
+              <div class="divider"></div>
+
+
+              <img src="../../../../../assets/images/search.png" alt="">
+
+              <input (input)="searchOnExtras($event)" type="text" class="search-input" placeholder="بحث...">
+
+
+
+            </div>
+
+            <!-- <div class="dropdown">
+              <img src="../../../../../assets/images/filter image.png" alt="">
+            </div> -->
+          </div>
+
+          <button (click)="openExtraDialoge(mainShipment)" pButton label="إضافة" class="p-button-primary"></button>
+        </div>
+
+      </ng-template>
+    </p-toolbar>
+
+    <p-table #dt [value]="filteredShipments" [rows]="7" [paginator]="true"
+      [globalFilterFields]="['username', 'email', 'phone', 'address']" styleClass="p-datatable-striped">
+
+
+
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th style="width: 3rem">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th> -->
+          <th class="tw-p-2">الرقم الفرعي</th>
+          <th class="tw-p-2">معلومات العميل</th>
+          <th class="tw-p-2">عنوان التسليم</th>
+          <th class="tw-p-2">الحالة</th>
+          <th class="tw-p-2"></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-shipment>
+        <tr>
+          <!-- <td>
+            <p-tableCheckbox [value]="shipment"></p-tableCheckbox>
+          </td> -->
+          <td class="tw-p-2 orange">{{shipment.trackingNumber}}</td>
+          <td class="tw-p-2">
+            <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
+
+              <img (click)="showDestinationDialog(shipment,2)" class="pointer"
+                src="../../../../../assets/images/eye.png" alt="">
+              <span (click)="showDestinationDialog(shipment,2)" class="tw-mr-1 pointer">عرض</span>
+            </div>
+          </td>
+          <td class="tw-p-2">
+
+            <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
+
+              <img (click)="showDestinationDialog(shipment,3)" class="pointer"
+                src="../../../../../assets/images/eye.png" alt="">
+              <span (click)="showDestinationDialog(shipment,3)" class="tw-mr-1 pointer">عرض</span>
+            </div>
+
+          </td>
+          <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
+            <div class="status">
+              <i class="pi pi-circle-on dot-icon"></i>
+              <span *ngIf="shipment.status=='Delivered'">مكتملة</span>
+              <span *ngIf="shipment.status=='Pending'">جارية </span>
+              <span *ngIf="shipment.status=='Cancelled'">ملغية </span>
+              <span *ngIf="shipment.status=='InProgress'">قيد التقدم </span>
+              <span *ngIf="shipment.status=='InTransit'">في الشحن </span>
+              <span *ngIf="shipment.status=='AtCustoms'">في الجمارك </span>
+              <span *ngIf="shipment.status=='OutForDelivery'">خرج للتسليم </span>
+              <span *ngIf="shipment.status=='Delayed'">مؤجلة </span>
+            </div>
+
+          </td>
+          <td class="tw-p-2">
+            <div class="tw-flex gap-3 tw-justify-center">
+              <!-- <img class="pointer " src="../../../../../assets/images/eye.png" alt=""> -->
+              <img (click)="openDeleteExtraDialoge(shipment)" class="pointer "
+                src="../../../../../assets/images/delete.png" alt="">
+              <img (click)="openStatusDialoge(shipment)" class="pointer "
+                src="../../../../../assets/images/refresh-2.png" alt="">
+              <img (click)="setFormValues(shipment)" class="pointer " src="../../../../../assets/images/edit.png"
+                alt="">
+              <img (click)="deleteExtraShipment(shipment)" class="pointer" src="../../../../../assets/images/trash.png"
+                alt="">
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<div style="direction: rtl;" class="content tw-mt-5 tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
+
+  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+    <div class="tw-flex tw-justify-between tw-items-center">
+      <p class="tw-m-0">تحديثات المكان</p>
+      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+        src="../../../../../assets/images/add.png" alt="">
+    </div>
+
+    <div class="tw-flex container  details tw-my-2">
+      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_location.png" alt="">
+      <div class="tw-flex-col tw-mr-2  tw-flex">
+        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
+        <p class="tw-m-0 tw-text-sm">هنا يكتب العنوان التفصيلي للموقع</p>
+        <div class="tw-flex tw-items-center ">
+          <img src="../../../../../assets/images/small-profile.png" alt="">
+          <span class="small-text">الموظف المسئول : اسم الموظف</span>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+    <div class="tw-flex tw-justify-between tw-items-center">
+      <p class="tw-m-0">تحديثات تاريخ الوصول</p>
+      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+        src="../../../../../assets/images/add.png" alt="">
+    </div>
+
+    <div class="tw-flex container  details tw-my-2">
+      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_calender.png" alt="">
+      <div class="tw-flex-col tw-mr-2  tw-flex">
+        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
+        <p class="tw-m-0 tw-text-sm">25/7/2025</p>
+        <div class="tw-flex tw-items-center ">
+          <img src="../../../../../assets/images/small-profile.png" alt="">
+          <span class="small-text">الموظف المسئول : اسم الموظف</span>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+    <div class="tw-flex tw-justify-between tw-items-center">
+      <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
+      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+        src="../../../../../assets/images/add.png" alt="">
+    </div>
+
+
+    <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
+      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_list.png" alt="">
+      <div class="tw-flex-col tw-mr-2  tw-flex">
+        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
+        <p class="tw-m-0 tw-text-sm">هنا يكتب عنوان الملاحظة</p>
+        <div class="tw-flex tw-items-center ">
+          <img src="../../../../../assets/images/small-profile.png" alt="">
+          <span class="small-text">الموظف المسئول : اسم الموظف</span>
+        </div>
+
+      </div>
+      <img style="width: 24px; height: 24px; cursor: pointer;" src="../../../../../assets/images/arrow-left.png" alt="">
+
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+
+
+
+
+
+
+<!-- dialogue to add extras shipment -->
+
+<p-dialog [visible]="extraShipment" [modal]="true" [style]="{width: '75vw'}" [draggable]="false" [resizable]="false"
+  styleClass="tw-rtl">
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-relative  tw-gap-2">
+      <img src="../../../../../assets/images/addbox.png" alt="">
+      <h2 class="tw-text-lg">إضافة شحنة فرعية</h2>
+      <i style="left: 30px; position:fixed ;" class="pi pi-times tw-cursor-pointer" (click)="closeDialogue()"></i>
+
+    </div>
+  </ng-template>
+
+
+  <form [formGroup]="extraShipmentForm" style="height: 300px;" class="tw-p-4">
+    <div class="tw-space-y-4">
+      <div class="tw-grid tw-grid-cols-2 tw-gap-4  tw-mb-10">
+        <!-- <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">رقم الشحنة الفرعية</label>
+          <input type="text" placeholder="رقم الشحنة الفرعية" class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div> -->
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">العميل</label>
+          <p-dropdown formControlName="customerId" (onChange)="getUserID($event)" [filter]="true"
+            optionLabel="firstName" [placeholder]="placeholder" filterBy="firstName" [options]="usersList"
+            class="tw-w-full tw-p-2 tw-border tw-rounded"></p-dropdown>
+
+        </div>
+
+
+      </div>
+
+      <div>
+        <!-- <div class="tw-text-right tw-mb-2">عنوان التسليم</div> -->
+        <div class="tw-grid tw-grid-cols-1 tw-gap-4  tw-mb-5">
+
+
+          <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">العنوان التفصيلي</label>
+            <input formControlName="deliveryAddress" type="text" placeholder="العنوان التفصيلي"
+              class="tw-w-full tw-p-2 tw-border tw-rounded">
+          </div>
+
+          <!-- <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">البلد</label>
+            <p-dropdown [options]="[]" placeholder="البلد" styleClass="tw-w-full">
+            </p-dropdown>
+          </div> -->
+
+          <!-- <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">المحافظة</label>
+            <p-dropdown [options]="[]" placeholder="المحافظة" styleClass="tw-w-full">
+            </p-dropdown>
+          </div> -->
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button (click)="saveExtraShipment()"
+        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        إضافة
+      </button>
+    </div>
+  </form>
+
+  <!-- <div class="tw-p-4">
+    <div class="tw-space-y-4">
+      <div class="tw-grid tw-grid-cols-3 tw-gap-4">
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">رقم الشحنة الفرعية</label>
+          <input type="text" placeholder="رقم الشحنة الفرعية" class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div>
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">العميل</label>
+          <input type="text" placeholder="العميل" class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div>
+      </div>
+
+      <div>
+        <div class="tw-text-right tw-mb-2">عنوان التسليم</div>
+        <div class="tw-grid tw-grid-cols-3 tw-gap-4  tw-mb-5">
+          <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">البلد</label>
+            <p-dropdown [options]="[]" placeholder="البلد" styleClass="tw-w-full">
+            </p-dropdown>
+          </div>
+
+          <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">المحافظة</label>
+            <p-dropdown [options]="[]" placeholder="المحافظة" styleClass="tw-w-full">
+            </p-dropdown>
+          </div>
+          <div class="tw-col-span-1">
+            <label class="tw-block tw-mb-2 tw-text-right">العنوان التفصيلي</label>
+            <input type="text" placeholder="العنوان التفصيلي" class="tw-w-full tw-p-2 tw-border tw-rounded">
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button
+        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        إضافة
+      </button>
+    </div>
+  </div> -->
+
+</p-dialog>
+
+
+<!-- dialog to add info  -->
+
+<p-dialog [visible]="statusUpdateDialog" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+  [resizable]="false" styleClass="tw-rtl">
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-gap-2 tw-justify-between tw-w-full">
+      <div class="tw-flex tw-items-center tw-gap-2 tw-relative">
+        <img src="../../../../../assets/images/big-refresh.png" alt="">
+        <h2 class="tw-text-lg">تحديث حالة الشحنة</h2>
+        <i class="pi pi-times tw-cursor-pointer" style="position: fixed; left: 40px;" (click)="closeDialogue()"></i>
+
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="tw-p-4">
+    <div class="tw-space-y-4">
+      <div class="tw-grid tw-grid-cols-1 tw-gap-4">
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">الحالة</label>
+          <p-dropdown (onChange)="getStatus($event)" optionLabel="label" [options]="shippingStatus" placeholder="الحالة"
+            styleClass="tw-w-full tw-bg-gray-50">
+          </p-dropdown>
+        </div>
+
+      </div>
+      <div class="tw-grid tw-grid-cols-1 tw-gap-4">
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">المكان</label>
+          <input [(ngModel)]="place" type="text" placeholder="المكان" class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div>
+        <!-- <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">تاريخ الوصول</label>
+          <input [(ngModel)]="arrivedDate" type="text" placeholder="تاريخ الوصول"
+            class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div> -->
+      </div>
+
+      <div>
+        <label class="tw-block tw-mb-2 tw-text-right">الملاحظات</label>
+        <textarea [(ngModel)]="notes" rows="4" placeholder="الملاحظات"
+          class="tw-w-full tw-p-2 tw-border tw-rounded"></textarea>
+      </div>
+
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button (click)="updateExtraShipmentStatus()"
+        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        إضافة
+      </button>
+    </div>
+  </div>
+
+</p-dialog>
+
+<!-- dialogue to delete extra shipment  -->
+<p-dialog [visible]="deleteExtra" [modal]="true" [style]="{width: '40vw'}" [draggable]="false" [resizable]="false"
+  styleClass="tw-rtl">
+
+
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-relative  tw-gap-2">
+      <img src="../../../../../assets/images/big-delete.png" alt="">
+      <h2 class="tw-text-lg">إيقاف شحنة فرعية</h2>
+      <i style="left: 30px; position:fixed ;" class="pi pi-times tw-cursor-pointer" (click)="closeDialogue()"></i>
+
+    </div>
+  </ng-template>
+
+  <div class="tw-p-4">
+    <div class="tw-space-y-4">
+      <div>
+        <label class="tw-block tw-mb-2 tw-text-right">سبب الإيقاف</label>
+        <textarea [(ngModel)]="cancelReason" rows="4" placeholder="سبب الإيقاف"
+          class="tw-w-full tw-p-2 tw-border tw-rounded"></textarea>
+      </div>
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button (click)="cancelExtraShipment(updatedExtraShipment)"
+        class="tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-px-8 tw-rounded hover:tw-bg-orange-600 tw-transition-colors">
+        ايقاف
+      </button>
+    </div>
+  </div>
+
+</p-dialog>
+
+
+
+<p-dialog [visible]="mainShimpentStatusUpdateDialog" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+  [resizable]="false" styleClass="tw-rtl">
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-gap-2 tw-justify-between tw-w-full">
+      <div class="tw-flex tw-items-center tw-gap-2 tw-relative">
+        <img src="../../../../../assets/images/big-refresh.png" alt="">
+        <h2 class="tw-text-lg">تحديث حالة الشحنة</h2>
+        <i class="pi pi-times tw-cursor-pointer tw-fixed tw-left-7" (click)="closeDialogue()"></i>
+
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="tw-p-4">
+    <div class="tw-space-y-4">
+
+
+      <div class="tw-grid tw-grid-cols-1 tw-gap-4">
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">الحالة</label>
+          <p-dropdown (onChange)="getStatus($event)" optionLabel="label" [options]="shippingStatus" placeholder="الحالة"
+            styleClass="tw-w-full tw-bg-gray-50">
+          </p-dropdown>
+
+          <!-- <label class="tw-block tw-mb-2 tw-text-right tw-text-lg tw-font-medium">التاريخ المتوقع للوصول</label>
+          <input pInputText type="date" [(ngModel)]="selectedDate"
+            class="tw-w-full tw-p-2 tw-border tw-rounded tw-bg-gray-50">-->
+        </div>
+      </div>
+
+
+      <div class="tw-grid tw-grid-cols-1 tw-gap-4">
+        <div class="tw-col-span-1">
+          <label class="tw-block tw-mb-2 tw-text-right">المكان</label>
+          <input [(ngModel)]="place" type="text" placeholder="المكان" class="tw-w-full tw-p-2 tw-border tw-rounded">
+        </div>
+
+      </div>
+
+      <div>
+        <label class="tw-block tw-mb-2 tw-text-right">الملاحظات</label>
+        <textarea [(ngModel)]="notes" rows="4" placeholder="الملاحظات"
+          class="tw-w-full tw-p-2 tw-border tw-rounded"></textarea>
+      </div>
+
+    </div>
+
+    <div class="tw-mt-6 tw-flex tw-justify-center">
+      <button (click)="updateMainshipmentStatus()"
+        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        إضافة
+      </button>
+    </div>
+  </div>
+
+</p-dialog>

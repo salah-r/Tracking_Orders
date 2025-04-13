@@ -1,134 +1,32 @@
-<!-- <p>left-menu works!</p> -->
-<!-- <br> -->
-<!--div class="card flex justify-content-center">
-    <p-panelMenu [model]="items" [style]="{'width':'400px'}"></p-panelMenu>
-</div-->
-<!-- <div class="card">
-    <p-megaMenu [model]="items" styleClass="flex" orientation="vertical">
-       
-    </p-megaMenu>
-</div> -->
 <div
   class="sidebar tw-h-full tw-w-full tw-flex tw-flex-col tw-justify-between tw-items-center tw-p-2.5 tw-box-border tw-rounded-l-[50px] tw-transition-width tw-duration-300"
-  [ngClass]="{ expanded: isSidebarExpanded }"
-  style="overflow: auto"
->
-  <div class="top-link tw-flex tw-w-full">
-    <img class="logo" src="../../../assets/images/Ruya_Logo.svg" alt="" />
+  [ngClass]="{ expanded: isSidebarExpanded }" style="overflow: auto">
+  <div class="top-link tw-flex">
+    <img class="logo" src="../../../assets/images/logo.png" alt="" />
   </div>
 
-  <div
-    class="middle-links tw-flex tw-flex-col tw-justify-center tw-flex-grow tw-w-full tw-mt-9"
-  >
-    <div class="hover-left-border">
-      <a
-        routerLink="/primarymember"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <div>
-          <i class="pi pi-star-fill" style="font-size: 2.5rem"></i>
-        </div>
+  <div class="line"></div>
 
-        <div>
-          <h1 class="link-content tw-hidden tw-mr-3">الاعضاء الاساسيين</h1>
-        </div>
+  <div class="middle-links tw-flex tw-flex-col tw-justify-start tw-relative tw-flex-grow tw-w-full tw-mt-9">
+
+
+
+    <div class="hover-left-border">
+      <a routerLink="/accounts"
+        class=" tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition">
+        <img src="../../../assets/images/users.png" alt="">
+        <span class="link-content tw-hidden tw-mr-3">الحسابات</span>
       </a>
     </div>
     <div class="hover-left-border">
-      <a
-        routerLink="/secondarymember"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-users" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الاعضاء التابعين</span>
-      </a>
-    </div>
-
-    <div class="hover-left-border">
-      <a
-        routerLink="/subscriptions"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-video" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الاشتراكات</span>
-      </a>
-    </div>
-    <div class="hover-left-border">
-      <a
-        routerLink="/units"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-building" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الوحدات السكنية</span>
-      </a>
-    </div>
-    <div class="hover-left-border">
-      <a
-        routerLink="/search"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-search" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3"> شئون الاعضاء </span>
-      </a>
-    </div>
-    <div class="hover-left-border">
-      <a
-        routerLink="/payments"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-money-bill" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3"> المدفوعات </span>
-      </a>
-    </div>
-
-    <div class="hover-left-border">
-      <a
-        routerLink="/yearlypenalties"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-percentage" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الغرامات السنوية</span>
-      </a>
-    </div>
-
-    <div class="hover-left-border">
-      <a
-        routerLink="/monthlypenalties"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-percentage" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الغرامات الشهرية</span>
-      </a>
-    </div>
-
-    <div class="hover-left-border">
-      <a
-        routerLink="/penaltyAndDiscountTypes"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-wallet" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">نوع الخصم/الغرامة</span>
-      </a>
-    </div>
-    <div class="hover-left-border">
-      <a
-        routerLink="/mainsettings"
-        class="tw-m-1.5 tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition"
-      >
-        <i class="pi pi-cog" style="font-size: 2.5rem"></i>
-
-        <span class="link-content tw-hidden tw-mr-3">الاعدادات العامة</span>
+      <a routerLink="/shipments"
+        class=" tw-text-center tw-px-5 tw-py-2.5 tw-text-xl tw-font-bold tw-text-white tw-transition">
+        <img src="../../../assets/images/car icon.png" alt="">
+        <span class="link-content tw-hidden tw-mr-3">الشحنات</span>
       </a>
     </div>
 
     <div class="lastContainer"></div>
+    <div class="orderImage"><img src="../../../assets/images/order.png" alt=""></div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="main-content tw-flex tw-h-screen">
+<div *ngIf="hideScrollbar==false" class="main-content tw-flex tw-h-screen">
   <!-- Sidebar -->
   <div [ngClass]="{ expanded: isSidebarExpanded }" class="sidebar tw-h-full tw-transition-all tw-duration-300">
     <app-sidebar [isSidebarExpanded]="isSidebarExpanded" (toggle)="toggleSidebar()"></app-sidebar>
@@ -8,7 +8,7 @@
   <div [ngClass]="{ minimized: isSidebarExpanded }"
     class="main-area tw-flex-1 tw-flex tw-flex-col tw-h-full tw-transition-all tw-duration-300">
     <!-- Header -->
-    <div class="header-layout tw-h-20 tw-p-1.5" style="z-index: 1000; width: 95%; margin: auto">
+    <div class="header-layout tw-h-20 tw-p-1.5" style="z-index: 1000; width: 100%">
       <app-header [isSidebarExpanded]="isSidebarExpanded" (toggle)="toggleSidebar()"></app-header>
     </div>
 
@@ -22,10 +22,12 @@
         <app-main class="tw-w-full"></app-main>
       </div>
 
-      <!-- Footer -->
-      <!-- <div class="footer-layout tw-w-full tw-h-20">
-        <app-footer></app-footer>
-      </div> -->
+
     </div>
   </div>
+</div>
+
+<div *ngIf="hideScrollbar==true">
+
+  <router-outlet></router-outlet>
 </div>
