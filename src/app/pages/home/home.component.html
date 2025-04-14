@@ -77,7 +77,9 @@
         <img class="box" src="../../../assets/images/box_icon.png" alt="">
       </div>
     </div>
-    <div class="tw-text-black tw-text-xl">{{errorMessage}}</div>
+
+    <p-confirmDialog></p-confirmDialog>
+
   </div>
 
   <!-- Shipment count -->
@@ -172,23 +174,112 @@
   </div>
 
   <div class="tw-grid  shippingWays tw-grid-cols-1 md:tw-grid-cols-2 sm:tw-grid-cols-1 lg:tw-grid-cols-3 tw-gap-4">
-    <div class="  tw-overflow-hidden tw-flex tw-justify-center">
-      <img src="../../../assets/images/air.png" alt="الشحن الجوي" class=" " />
+
+    <div style="cursor: pointer;" (click)="showDialog('air')" class="  tw-overflow-hidden tw-flex tw-justify-center">
+      <img (mouseenter)="toggleTextAir(true)" src="../../../assets/images/air.png" alt="الشحن الجوي" class=" "
+        [class.hidden]="isAirTextHovered" />
+
+
+      <img (mouseleave)="toggleTextAir(false)" id="img2" src="../../../assets/images/airOnHover.PNG" alt=""
+        [class.hidden]="!isAirTextHovered" />
+    </div>
+
+
+
+
+
+
+    <div style="cursor: pointer;" (click)="showDialog('sea')"
+      class=" tw-relative tw-overflow-hidden tw-flex tw-justify-center">
+      <img (mouseenter)="toggleText(true)" src="../../../assets/images/sea.png" alt="الشحن البحري"
+        [class.hidden]="isTextHovered" />
+
+
+      <img (mouseleave)="toggleText(false)" id="img2" src="../../../assets/images/seaONhov.png" alt=""
+        [class.hidden]="!isTextHovered" />
 
     </div>
 
-    <div class="  tw-overflow-hidden tw-flex tw-justify-center">
-      <img src="../../../assets/images/sea.png" alt="الشحن البحري" class="  " />
+    <div style="cursor: pointer;" (click)="showDialog('land')" class="tw-overflow-hidden tw-flex tw-justify-center"
+      (mouseenter)="toggleImages(true)">
+      <img (mouseenter)="toggleImages(true)" id="img1" src="../../../assets/images/land-shipping.png" alt="الشحن البري"
+        [class.hidden]="isHovered" />
+      <img (mouseleave)="toggleImages(false)" id="img2" src="../../../assets/images/land-shipping2.png" alt=""
+        [class.hidden]="!isHovered" />
     </div>
 
-    <div class="  tw-overflow-hidden tw-flex tw-justify-center">
-      <img src="../../../assets/images/land-shipping.png" alt="الشحن البري" class=" " />
-
-    </div>
   </div>
 </div>
 
 <!-- footer -->
+<p-dialog header="التفاصيل" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+
+
+  <p *ngIf="airVisible==true">
+    في شركتنا، نوفر خدمة الشحن الجوي من كافة المطارات العالمية، بسرعة وأمان واحترافية عالية. بفضل شراكاتنا مع أبرز
+    شركات الطيران الدولية وشبكتنا الواسعة، نقدر نوصل شحنتك من أي مكان في العالم، ونضمن إنها توصل بأمان وفـي الوقت
+    المحدد، مهما كانت طبيعة الشحنة أو وجهتها.
+
+    نقل الشحنات من أوروبا إلى العراق هو واحد من خدماتنا المميزة، ويتم عبر خطوط طيران موثوقة، بتتبع لحظي ومواعيد
+    دقيقة. إحنا نتابع كل تفصيلة، من لحظة استلام الشحنة، لتغليفها وتأمينها، مروراً بالشحن والتخليص الجمركي، وحتى
+    تسليمها النهائي في العراق.
+
+    نغطي أيضاً عدد كبير من الدول المرتبطة معنا برحلات مباشرة، واللي يسمح لنا بتقليل أوقات النقل والتكاليف على
+    عملائنا. سواء كانت شحنتك خفيفة أو تجارية ضخمة، إحنا نملك القدرة على التعامل معها بكفاءة وسرعة.
+
+    الأهم من كده، إننا مش بس شركة شحن، إحنا شريك لوجستي متكامل. نوفر لك حلول ذكية ومخصصة حسب نوع شحنتك واحتياجك.
+    فريقنا المتخصص راح يدعمك خطوة بخطوة، من اختيار الطريقة الأنسب للشحن، إلى إنهاء كافة الإجراءات الجمركية
+    والمعاملات الورقية بدون تعب أو تعقيد.
+
+    بكل بساطة، معانا الشحن الجوي ما هو إلا تجربة سهلة، سريعة، وآمنة، تعكس احترافيتنا وحرصنا على رضاك.
+
+
+  </p>
+
+  <p *ngIf="seaVisible==true">
+    في عالم التجارة الحديثة، الشحن البحري ما عاد مجرد وسيلة نقل، بل هو عنصر حاسم في سلسلة الإمداد الناجحة.
+    ومن هنا، نوفر لك في شركتنا خدمة شحن بحري متكاملة تنطلق من كافة الموانئ العالمية، وتصل إلى العراق بدقة، سرعة،
+    وأمان.
+
+    نعتمد على شراكات استراتيجية مع أبرز شركات الملاحة العالمية، مما يتيح لنا الوصول إلى جداول منتظمة ومسارات مباشرة
+    تضمن تسليم الشحنات في الموعد دون تأخير.
+    سواء كنت تستورد حاويات كاملة (FCL) أو شحنات مجزأة (LCL)، فإننا نوفر لك حلولاً مرنة ومناسبة لحجم أعمالك
+    وميزانيتك.
+
+    كل شحنة تمر عبر منظومة لوجستية دقيقة، يديرها فريق متخصص يتابع مسار الشحنة لحظة بلحظة، ويزوّدك بتقارير لحظية عن
+    الحالة والموقع.
+    نوفر أيضًا خدمات تخليص جمركي، وتأمين على البضائع، وحلول تخزين مرنة، لنضمن لك تجربة شحن خالية من المتاعب.
+
+    معنا، أنت لا تنقل بضائعك فقط… بل تنقل أعمالك إلى مستوى جديد من الاحتراف والثقة.
+  </p>
+
+  <p *ngIf="landVisible==true">
+
+
+    في عالم الشحن الحديث، الشحن البري يعتبر الخيار الأمثل حين تحتاج إلى مرونة، سرعة، وتحكّم كامل في تنقل البضائع، خاصة
+    ضمن المناطق المتصلة برياً.
+    ومن هذا المنطلق، تقدم شركتنا خدمة الشحن البري بكفاءة عالية، تغطي كافة المنافذ الحدودية المتاحة، وتمر بسلاسة عبر
+    الطرق الدولية.
+
+    نقوم بنقل الشحنات برياً من أوروبا إلى العراق مروراً بتركيا، عبر مسارات مجرّبة وموثوقة، تضمن السلامة وسرعة الوصول.
+    كما نوفر خدمات الشحن البري من جميع الدول التي ترتبط مع العراق بحدود برية، مما يجعل خيارات النقل أكثر تنوعاً وملاءمة
+    لاحتياجاتك.
+
+    فريقنا اللوجستي يتولى مهمة التخطيط، التتبع، والتنسيق الكامل مع الجهات المعنية، لنضمن أن شحنتك تمر بكل مراحل النقل
+    بسلاسة ودون تأخير.
+
+    نقدم لك أيضًا دعمًا لوجستيًا كاملاً يشمل التخليص الجمركي، التأمين على البضائع، وخدمات تتبع فوري للشحنات.
+    كل ذلك ضمن حلول متكاملة مصممة خصيصاً لتناسب تحديات الشحن المحلي والدولي، سواء كنت تنقل بضائع تجارية، صناعية، أو
+    شخصية.
+
+    معنا، الشحن البري يتحول من عبء لوجستي إلى تجربة مريحة ومدروسة تدعم استقرار أعمالك ونموها
+
+
+
+  </p>
+</p-dialog>
+
 
 <div class="footer">
 

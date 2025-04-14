@@ -5,6 +5,7 @@ import { Swiper } from 'swiper';
 import { ShipmentsService } from './service/shipmentService/shipments.service';
 import { RevokeToken } from 'src/app/interfaces/login-credentials';
 
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +19,41 @@ export class HomeComponent {
   serverUrl: string = 'your-server-url';
   isLoggedIn: boolean = false;
   shipmentId: any;
-  errorMessage: string;
+  errorMessage: string = '';
   revokeToken: RevokeToken;
   token: string;
+  isHovered = false;
+  isTextHovered = false;
+  isAirTextHovered: boolean = false;
+  visible: boolean = false
+  airVisible: boolean = false;
+  seaVisible: boolean = false;
+  landVisible: boolean = false;
+
+  showDialog(type: any) {
+
+    this.airVisible = false;
+    this.seaVisible = false;
+    this.landVisible = false;
+
+
+    this.visible = true
+    if (type == 'sea') {
+      this.seaVisible = true;
+
+    }
+    else if (type == 'air') {
+      this.airVisible = true
+    }
+    else {
+      this.landVisible = true
+    }
+  }
 
   constructor(
     private authService: AuthService,
     private shipmentsService: ShipmentsService,
+    private confirmationService: ConfirmationService,
     private router: Router
   ) { }
 
@@ -33,6 +62,18 @@ export class HomeComponent {
 
   }
 
+
+  toggleImages(hovered: boolean): void {
+    this.isHovered = hovered;
+  }
+
+  toggleText(hovered: boolean): void {
+    this.isTextHovered = hovered;
+  }
+
+  toggleTextAir(hovered: boolean): void {
+    this.isAirTextHovered = hovered;
+  }
 
   checkIfLogin() {
     this.token = localStorage.getItem("auth_token")
@@ -96,18 +137,36 @@ export class HomeComponent {
         else {
           console.log('forbidden request');
           this.errorMessage = `Forbidden Request >  Not Allowed`
-          console.log(this.errorMessage);
+          // console.log(this.errorMessage);
+          this.confirm1();
         }
 
       },
       error: (err: any) => {
         this.errorMessage = `${err} >  Not Allowed`
-        console.log(this.errorMessage);
+        // console.log(this.errorMessage);
+        this.confirm1();
 
 
       }
     })
   }
+
+
+  confirm1() {
+    this.confirmationService.confirm({
+      message: this.errorMessage || 'Authorization Error',
+      header: 'Error',
+      icon: 'pi pi-danger',
+      acceptLabel: 'Try Again',
+      rejectVisible: false,
+      accept: () => {
+        this.shipmentId == null
+        this.errorMessage = '';
+      }
+    });
+  }
+
 
 
   onSlideChange(event: any) {

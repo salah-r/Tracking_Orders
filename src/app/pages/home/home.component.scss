@@ -492,3 +492,16 @@
     flex-wrap: wrap !important;
   }
 }
+
+::ng-deep div.ng-trigger.ng-trigger-animation.p-dialog.p-confirm-dialog.p-component.ng-star-inserted {
+  background-color: transparent;
+}
+
+::ng-deep div.p-dialog-mask.p-component-overlay.p-dialog-mask-scrollblocker.ng-star-inserted {
+  background-color: transparent;
+}
+
+
+.back {
+  background-color: rgba($color: #000000, $alpha: .7);
+}

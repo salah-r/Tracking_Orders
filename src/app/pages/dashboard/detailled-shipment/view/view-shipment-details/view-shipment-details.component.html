@@ -172,83 +172,87 @@
 
 <div style="direction: rtl;" class="content tw-mt-5 tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
 
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
-    <div class="tw-flex tw-justify-between tw-items-center">
-      <p class="tw-m-0">تحديثات المكان</p>
-      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
-        src="../../../../../assets/images/add.png" alt="">
+  <ng-container *ngFor="let item of mainShipment.updates; let i = index">
+
+    <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+      <div *ngIf="i==0" class="tw-flex tw-justify-between tw-items-center">
+        <p class="tw-m-0">تحديثات المكان</p>
+        <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+          src="../../../../../assets/images/add.png" alt="">
+      </div>
+
+      <div class="tw-flex container  details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_location.png" alt="">
+        <div class="tw-flex-col tw-mr-2  tw-flex  tw-justify-center tw-items-center tw-content-center">
+          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
+          <p class="tw-m-0 tw-text-sm">{{item.location}}</p>
+          <div class="tw-flex tw-items-center ">
+            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
+            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+          </div>
+        </div>
+
+      </div>
+
+
+
     </div>
 
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_location.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب العنوان التفصيلي للموقع</p>
-        <div class="tw-flex tw-items-center ">
-          <img src="../../../../../assets/images/small-profile.png" alt="">
-          <span class="small-text">الموظف المسئول : اسم الموظف</span>
+    <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+      <div *ngIf="i==0" class="tw-flex tw-justify-between tw-items-center">
+        <p class="tw-m-0">تحديثات تاريخ الوصول</p>
+        <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+          src="../../../../../assets/images/add.png" alt="">
+      </div>
+
+      <div class="tw-flex container  details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_calender.png" alt="">
+        <div class="tw-flex-col tw-mr-2  tw-justify-center tw-items-center tw-content-center tw-flex">
+          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
+          <p class="tw-m-0 tw-text-sm">{{mainShipment.expectedDeliveryDate|date:"dd/MM/YYYY"}}</p>
+          <div class="tw-flex tw-items-center ">
+            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
+            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+          </div>
         </div>
+
+      </div>
+
+
+
+    </div>
+
+    <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
+
+      <div *ngIf="i==0" class="tw-flex tw-justify-between tw-items-center">
+        <p class="tw-m-0">تحديثات الملاحظات </p>
+        <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+          src="../../../../../assets/images/add.png" alt="">
+      </div>
+
+
+      <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
+        <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_list.png" alt="">
+        <div class="tw-flex-col tw-mr-2  tw-flex  tw-justify-center tw-items-center tw-content-center">
+          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
+          <p class="tw-m-0 tw-text-sm"> {{item.notes}}</p>
+          <div class="tw-flex tw-items-center ">
+            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
+            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+          </div>
+
+        </div>
+        <img style="width: 24px; height: 24px; cursor: pointer;" src="../../../../../assets/images/arrow-left.png"
+          alt="">
+
+
       </div>
 
     </div>
 
 
-
-  </div>
-
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
-
-    <div class="tw-flex tw-justify-between tw-items-center">
-      <p class="tw-m-0">تحديثات تاريخ الوصول</p>
-      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
-        src="../../../../../assets/images/add.png" alt="">
-    </div>
-
-    <div class="tw-flex container  details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_calender.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">25/7/2025</p>
-        <div class="tw-flex tw-items-center ">
-          <img src="../../../../../assets/images/small-profile.png" alt="">
-          <span class="small-text">الموظف المسئول : اسم الموظف</span>
-        </div>
-      </div>
-
-    </div>
-
-
-
-  </div>
-
-  <div class="tw-flex tw-w-full md:tw-w-2/5 lg:tw-w-1/4 tw-flex-col container tw-bg-white tw-mx-4 tw-p-5  tw-mt-7">
-
-    <div class="tw-flex tw-justify-between tw-items-center">
-      <p class="tw-m-0">تحديثات الملاحظات المضافة</p>
-      <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
-        src="../../../../../assets/images/add.png" alt="">
-    </div>
-
-
-    <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
-      <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_list.png" alt="">
-      <div class="tw-flex-col tw-mr-2  tw-flex">
-        <span style="font-size: 8px; color: #89898A;">23/7/2025</span>
-        <p class="tw-m-0 tw-text-sm">هنا يكتب عنوان الملاحظة</p>
-        <div class="tw-flex tw-items-center ">
-          <img src="../../../../../assets/images/small-profile.png" alt="">
-          <span class="small-text">الموظف المسئول : اسم الموظف</span>
-        </div>
-
-      </div>
-      <img style="width: 24px; height: 24px; cursor: pointer;" src="../../../../../assets/images/arrow-left.png" alt="">
-
-
-    </div>
-
-  </div>
-
-
+  </ng-container>
 
 </div>
 

@@ -10,7 +10,7 @@ export const adminGuard = () => {
   const token = authService.getToken();
   const decoded = token ? authService.decodeToken(token) : null;
 
-  if (decoded?.roles?.includes('admin')) {
+  if (decoded?.roles[0]?.includes('Admin')) {
     return true;
   } else {
     return router.createUrlTree(['/home']);

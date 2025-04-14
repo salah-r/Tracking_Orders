@@ -102,10 +102,15 @@ export class SignInComponent {
 
           console.log("decoded Token >", DecodedData);
 
-          if (DecodedData.roles[0] == "admin") {
+          console.log(DecodedData.roles[0]);
+
+          if (DecodedData.roles[0] === "Admin") {
+            console.log('equa');
 
             this.router.navigate(['/accounts']);
+
           } else {
+            console.log('not equa');
 
             this.router.navigate(['/home']);
           }
