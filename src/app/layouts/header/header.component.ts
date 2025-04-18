@@ -5,34 +5,10 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  @Input() isSidebarExpanded = false; // Receive sidebar state
-  @Output() toggle = new EventEmitter<void>(); // Emit toggle event
+export class HeaderComponent  {
+    isMobileMenuOpen = false;
 
-  isMobileView = false;
-  isDropdownOpen = false;
-
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
-  onLinkClick() {
-    this.isDropdownOpen = false;
-  }
-
-  ngOnInit(): void {
-    this.checkScreenWidth();
-    window.addEventListener('resize', this.checkScreenWidth.bind(this));
-  }
-
-  checkScreenWidth() {
-    this.isMobileView = window.innerWidth < 768;
-  }
-
-  toggleSidebar() {
-    this.toggle.emit(); // Emit toggle event to parent
-  }
-
-  ngOnDestroy() {
-    window.removeEventListener('resize', this.checkScreenWidth.bind(this));
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 }

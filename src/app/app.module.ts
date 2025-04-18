@@ -119,8 +119,7 @@ import { ViewAllShipmentsComponent } from './pages/dashboard/shipments/view/view
 import { ViewShipmentDetailsComponent } from './pages/dashboard/detailled-shipment/view/view-shipment-details/view-shipment-details.component';
 import { CreateUpdateShipmentComponent } from './pages/dashboard/shipments/editors/create-update-shipment/create-update-shipment.component';
 import { CerateUpdateAccountComponent } from './pages/dashboard/accounts/editors/cerate-update-account/cerate-update-account.component';
-
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 register();
@@ -141,7 +140,7 @@ register();
     ViewAllAccountsComponent,
     CerateUpdateAccountComponent,
     ViewShipmentDetailsComponent,
-    CreateUpdateShipmentComponent
+    CreateUpdateShipmentComponent,
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
@@ -155,7 +154,7 @@ register();
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-
+MatDialogModule,
     AccordionModule,
     AutoCompleteModule,
     BadgeModule,

@@ -1,177 +1,181 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AccountService } from '../../sevice/account.service';
-import { Password } from 'primeng/password';
 
 @Component({
   selector: 'app-cerate-update-account',
   templateUrl: './cerate-update-account.component.html',
   styleUrls: ['./cerate-update-account.component.scss']
 })
-export class CerateUpdateAccountComponent {
-  @Output() closeDialog = new EventEmitter<boolean>();
-  @Input('user') user: any;
-  @Input('userDialogeValue') userDialogeValue!: boolean;
-  @Output('userDialog') userDialog = new EventEmitter<boolean>();
-  @Output('UpdateData') UpdateData = new EventEmitter<boolean>();
+export class CerateUpdateAccountComponent implements OnInit {
+  @Input() user: any;
+  @Input() userDialogeValue: boolean;
+  @Output() userDialog = new EventEmitter<boolean>();
+  @Output() UpdateData = new EventEmitter<boolean>();
+  userForm = this.fb.group({
+    firstName: ['', Validators.required],
+    lastName: [''],
+    email: ['', [Validators.required, Validators.email]],
+    shippingAddress: [''],
+    password: [''],
+    phone: [''],
+    rePassword: ['']
+  });
+showPassword: boolean = false;
 
-
-  visible: boolean = true;  // Add this property
-  diffrentPass: boolean;
-  viewPass: boolean = true;
+  viewPassword: boolean = true;
+  showPasswordErrorfild: boolean = false;
   passwordError: string = '';
+
   constructor(
+    private fb: FormBuilder,
     private accountService: AccountService,
-    private fb: FormBuilder, private messageService: MessageService) { }
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.setFormValues();
-    if (this.user != null) {
-      this.viewPass = false
-    }
+    this.viewPassword = this.user == null;
 
     document.addEventListener('keydown', this.handleEscapeKey.bind(this));
   }
 
-  handleEscapeKey(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.onClose();
-    }
+  handleEscapeKey(event: KeyboardEvent): void {
+    if (event.key === 'Escape') this.onClose();
   }
 
-  onClose() {
-    this.visible = false;
+  onClose(): void {
     this.userDialog.emit(false);
   }
 
-
-
-  userForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['',],
-    email: ['', Validators.required, Validators.email],
-    shippingAddress: ['',],
-    password: ['',],
-    phone: ['',],
-    rePassword: ['',]
-  });
-
-  get firstName() {
-    return this.userForm.get('firstName');
-  }
-  get lastName() {
-    return this.userForm.get('lastName');
-  }
-  get email() {
-    return this.userForm.get('email');
-  }
-  get shippingAddress() {
-    return this.userForm.get('shippingAddress');
-  }
-  get password() {
-    return this.userForm.get('password');
-  }
-  get phone() {
-    return this.userForm.get('phone');
-  }
-  get rePassword() {
-    return this.userForm.get('rePassword');
-  }
-
-  setFormValues() {
-
+  setFormValues(): void {
+    if (!this.user) return;
     this.userForm.patchValue({
-      // password: this.user?.password || '',
-      shippingAddress: this.user?.shippingAddress || '',
-      email: this.user?.email || '',
-      firstName: this.user?.firstName || '',
-      phone: this.user?.phoneNumber || '',
-      lastName: this.user?.lastName || '',
+      firstName: this.user.firstName,
+      lastName: this.user.firstName,
+      email: this.user.email,
+      phone: this.user.phoneNumber,
+      shippingAddress: this.user.shippingAddress
     });
   }
 
-  saveUser() {
-    console.log(this.userForm.value);
+  saveUser(): void {
+    if (!this.userForm.valid) return;
 
-    if (this.userForm.valid) {
-      const cerateBody = {
-        email: this.email.value,
-        firstName: this.firstName.value,
-        lastName: this.firstName.value,
-        password: this.password.value,
-        shippingAddress: this.shippingAddress.value,
-        phone: this.phone.value
+    const form = this.userForm.value;
+
+    if (this.user) {
+      const updateBody = {
+        firstName: form.firstName,
+        lastName: form.firstName,
+        email: form.email,
+        phone: form.phone,
+        shippingAddress: form.shippingAddress
       };
-      if (this.user != null) {
-        this.viewPass = false
 
-        const editBody = {
+      this.accountService.editUser(this.user.id, updateBody).subscribe({
+        next: () => {
+          this.showSuccess('User updated');
+          this.emitAndClose();
+        },
+        error: err => console.error(err)
+      });
 
-          firstName: this.firstName.value,
-          lastName: this.firstName.value,
-          email: this.email.value,
-          phone: this.phone.value,
-          shippingAddress: this.shippingAddress.value
-
-        };
-        // update func
-        this.accountService.editUser(this.user.id, editBody).subscribe({
-          next: (res) => {
-            console.log(res);
-
-            this.UpdateData.emit(true);
-            this.userDialog.emit(false);
-            this.userDialogeValue = false;
-
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Successful',
-              detail: 'user Updated',
-              life: 3000,
-            });
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
-
-        // add func
-      } else {
-        this.viewPass = true
-        console.log('create case ');
-
-
-        if (this.password.value === this.rePassword.value) {
-
-          this.accountService.addUser(cerateBody).subscribe({
-            next: (res: any) => {
-              console.log(res.data);
-              this.UpdateData.emit(true);
-              this.userDialog.emit(false);
-              this.userDialogeValue = false;
-
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Successful',
-                detail: 'user Created',
-                life: 3000,
-              });
-            },
-            error: (err) => {
-              console.log(err)
-
-            }
-          });
-        } else {
-          this.passwordError = ` Passords are different &
-          Password should be at least 8 digits and should contains Lowercase, NonAlphanumeric and Uppercase
-          `
-          this.diffrentPass = true
-        }
+    } else {
+      if (form.password !== form.rePassword) {
+        this.showPasswordError();
+        return;
       }
 
-      this.user = null;
+      const createBody = {
+        email: form.email,
+        firstName: form.firstName,
+        lastName: form.firstName,
+        password: form.password,
+        shippingAddress: form.shippingAddress,
+        phone: form.phone
+      };
+
+      this.accountService.addUser(createBody).subscribe({
+        next: () => {
+           this.showSuccess('User created');
+          this.emitAndClose();
+        },
+        error: err => console.error(err)
+      });
     }
   }
+
+  private emitAndClose(): void {
+    this.UpdateData.emit(true);
+    this.userDialog.emit(false);
+    this.user = null;
+  }
+
+  private showSuccess(detail: string): void {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail,
+      life: 3000
+    });
+  }
+
+  private showError(detail: string): void {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail,
+      life: 3000
+    });
+  }
+
+  private showPasswordError(): void {
+    this.passwordError = `Passwords do not match. Password should be at least 8 characters and contain lowercase, uppercase, and non-alphanumeric characters.`;
+    this.showPasswordErrorfild = true;
+  }
+
+
+generatePassword(): void {
+  const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lower = 'abcdefghijklmnopqrstuvwxyz';
+  const numbers = '0123456789';
+  const symbols = '$%^&*()#@!';
+  const all = upper + lower + numbers + symbols;
+  const length = 8;
+
+  let password = '';
+
+  // Add at least one character from each category
+  password += upper[Math.floor(Math.random() * upper.length)];
+  password += lower[Math.floor(Math.random() * lower.length)];
+  password += numbers[Math.floor(Math.random() * numbers.length)];
+  password += symbols[Math.floor(Math.random() * symbols.length)];
+
+  // Fill the rest randomly
+  for (let i = password.length; i < length; i++) {
+    password += all[Math.floor(Math.random() * all.length)];
+  }
+
+  // Shuffle the password to mix characters
+  const shuffledPassword = this.shuffle(password);
+
+  // Set the form values properly
+  this.userForm.patchValue({
+    password: shuffledPassword,
+    rePassword: shuffledPassword
+  });
+}
+
+shuffle(str: string): string {
+  const arr = str.split('');
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.join('');
+}
+
+
 }

@@ -1,111 +1,86 @@
-<p-dialog [(visible)]="userDialogeValue" [modal]="true" [style]="{width: '733px'}" [draggable]="false"
-  [resizable]="false" styleClass="tw-rtl" (onHide)="onClose()" [closeOnEscape]="true">
-
+<p-dialog [(visible)]="userDialogeValue" [modal]="true"
+  [style]="{ width: '95vw', maxWidth: '600px', maxHeight: '90vh', overflowY: 'auto' }" [draggable]="false"
+  [resizable]="false" styleClass="tw-rtl responsive-dialog" (onHide)="onClose()" [closeOnEscape]="true">
 
   <ng-template pTemplate="header">
-    <div class="tw-flex tw-items-center tw-gap-2">
-      <div class="  tw-rounded-xl">
-        <img src="../../../../../assets/images/bif user.png" alt="">
+    <div class="tw-flex tw-items-center tw-justify-between tw-w-full tw-px-2 sm:tw-px-4">
+      <div class="tw-flex tw-items-center tw-gap-2">
+        <img src="../../../../../assets/images/bif user.png" alt="User icon" class="tw-h-8 sm:tw-h-10">
+        <h2 class="tw-text-base sm:tw-text-lg">إضافة حساب جديد</h2>
       </div>
-      <h2 class="tw-text-lg">إضافة حساب جديد</h2>
-      <i class="pi pi-times tw-cursor-pointer" (click)="onClose()"></i>
+      <i class="pi pi-times tw-cursor-pointer tw-text-lg tw-p-2" (click)="onClose()"></i>
     </div>
   </ng-template>
 
-  <div class="">
-    <!-- Form Content -->
+  <div class="tw-px-2 sm:tw-px-4 tw-py-4">
     <div [formGroup]="userForm" class="tw-space-y-4">
-
-      <div class="tw-flex tw-gap-4">
-
-        <div class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">اسم المستخدم</label>
-          <div class="tw-relative tw-flex tw-gap-2">
-            <input formControlName="firstName" type=" text"
-              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50" placeholder="اسم المستخدم">
-            <img src="../../../../../assets/images/replace.png" alt="">
+      <!-- First Row: Username + Email -->
+      <div class="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4">
+        <div class="tw-w-full sm:tw-flex-1">
+          <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">اسم المستخدم</label>
+          <div class="tw-relative tw-flex tw-gap-2 tw-items-center">
+            <input formControlName="firstName" type="text"
+              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm" placeholder="اسم المستخدم">
+            <!-- <img src="../../../../../assets/images/replace.png" alt="Replace icon" class="tw-h-6"> -->
           </div>
         </div>
-
-        <div *ngIf="viewPass == true" class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">كلمة المرور</label>
-          <div class="tw-relative tw-flex tw-gap-2">
-            <input formControlName="password" type="password"
-              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50" placeholder="كلمة المرور">
-            <img src="../../../../../assets/images/replace.png" alt="">
-
-          </div>
-        </div>
-      </div>
-      <div class="tw-flex tw-gap-4">
-
-        <div *ngIf="viewPass==true" class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">تأكيد كلمة المرور</label>
-          <div class="tw-relative tw-flex tw-gap-2">
-            <input formControlName="rePassword" type="password"
-              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50" placeholder="تأكيد كلمة المرور">
-          </div>
-        </div>
-
-        <div class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">الايميل</label>
-          <div class="tw-relative tw-flex tw-gap-2">
-            <input formControlName="email" type="email" class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50"
-              placeholder="الايميل">
-
-          </div>
+        <div class="tw-w-full sm:tw-flex-1">
+          <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">الايميل</label>
+          <input formControlName="email" type="email"
+            class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm" placeholder="الايميل">
         </div>
       </div>
 
-
-
-      <!-- <div class="tw-flex tw-gap-4">
-        <div class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">البلد</label>
-          <p-dropdown [options]="[]" placeholder="البلد" styleClass="tw-w-full tw-bg-gray-50">
-          </p-dropdown>
+      <!-- Second Row: Password + Confirm Password -->
+      <div *ngIf="viewPassword" class="tw-flex tw-flex-col sm:tw-flex-row tw-gap-4">
+        <div class="tw-w-full sm:tw-flex-1">
+          <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">كلمة المرور</label>
+          <div class="tw-relative tw-flex tw-gap-2 tw-items-center">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm" placeholder="كلمة المرور">
+            <img src="../../../../../assets/images/replace.png" alt="Generate password" class="tw-h-6 tw-cursor-pointer"
+              (click)="generatePassword()">
+            <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="showPassword = !showPassword"
+              class="tw-text-gray-600 tw-cursor-pointer tw-absolute tw-left-10 tw-text-base"></i>
+          </div>
         </div>
-        <div class="tw-flex-1">
-          <label class="tw-block tw-mb-2 tw-text-right">المحافظة</label>
-          <p-dropdown [options]="[]" placeholder="المحافظة" styleClass="tw-w-full tw-bg-gray-50">
-          </p-dropdown>
+        <div class="tw-w-full sm:tw-flex-1">
+          <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">تأكيد كلمة المرور</label>
+          <div class="tw-relative tw-flex tw-gap-2 tw-items-center">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="rePassword"
+              class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm"
+              placeholder="تأكيد كلمة المرور">
+            <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="showPassword = !showPassword"
+              class="tw-text-gray-600 tw-cursor-pointer tw-absolute tw-left-4 tw-text-base"></i>
+          </div>
         </div>
-      </div> -->
+      </div>
 
+      <!-- Third Row: Phone (Single Input) -->
       <div>
-        <label class="tw-block tw-mb-2 tw-text-right">رقم الهاتف</label>
-        <input formControlName="phone" type="text" class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50"
-          placeholder="الهاتف
-          ">
-
+        <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">رقم الهاتف</label>
+        <input formControlName="phone" type="text"
+          class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm" placeholder="الهاتف">
       </div>
+
+      <!-- Fourth Row: Address (Single Input) -->
       <div>
-        <label class="tw-block tw-mb-2 tw-text-right">العنوان التفصيلي</label>
+        <label class="tw-block tw-mb-1 tw-text-right tw-text-sm sm:tw-text-base">العنوان التفصيلي</label>
         <input formControlName="shippingAddress" type="text"
-          class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50" placeholder="العنوان التفصيلي
-          ">
-
+          class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50 tw-text-sm" placeholder="العنوان التفصيلي">
       </div>
     </div>
 
-    <p style="color: red;"> {{passwordError}}
-    </p>
+    <!-- Error Message -->
+    <p class="tw-text-red-500 tw-mt-2 tw-text-center tw-text-sm">{{passwordError}}</p>
 
-    <div class="tw-mt-4 tw-flex tw-justify-center">
+    <!-- Submit Button -->
+    <div class="tw-mt-6 tw-flex tw-justify-center">
       <button
-        class="tw-w-1/2 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-xl hover:tw-bg-orange-600 tw-transition-colors"
+        class="tw-w-full sm:tw-w-1/2 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-xl hover:tw-bg-orange-600 tw-transition-colors tw-text-sm"
         (click)="saveUser()">
-
         إضافة
       </button>
     </div>
-
   </div>
-
-  <!-- <p-dialog style="width: 75%;" [visible]="diffrentPass">
-
-    <h3 style="color: red;"> {{passwordError}}</h3>
-  </p-dialog> -->
-
-
 </p-dialog>

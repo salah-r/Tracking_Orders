@@ -105,7 +105,7 @@ export class ApiConnService {
       );
   }
 
-  addData(endPoint: string, newData: any) {
+  addData(endPoint: string, newData: any)  {
     return this.http
       .post(
         // `${this.apiurl}/${endPoint}?consumer_key=${this.consumer_key}&consumer_secret=${this.consumer_secret}`,

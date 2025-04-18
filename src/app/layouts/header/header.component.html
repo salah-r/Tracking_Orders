@@ -1,37 +1,52 @@
-<header class=" tw-flex-row tw-justify-center tw-items-start tw-gap-40 tw-h-10 tw-mt-9 tw-block tw-w-full">
-  <div class="tw-flex tw-flex-row tw-justify-start tw-items-center tw-gap-4 tw-w-full">
-    <!-- <button
-      style="background-color: rgb(255, 255, 255)"
-      class="toggle-btn tw-cursor-pointer tw-border-0 tw-transition-all tw-duration-300 hover:tw-py-2"
-      (click)="toggleSidebar()"
-    >
-      <i class="pi pi-bars tw-font-bold tw-text-2xl"></i>
-    </button> -->
-    <div class="header tw-flex tw-items-center ">
-      <h4 class="tw-text-3xl tw-font-bold tw-ml-10 tw-m-0 tw-font-oblique">مرحبا بعودتك </h4>
 
-      <div class="tw-relative tw-flex tw-items-center tw-content-center">
-        <input pInputText type="text" class=" modifiedInput tw-h-14 tw-pr-10" pSize="large" placeholder="بحث" />
-        <i class="staticPosition pi pi-search"></i>
-      </div>
-      <div class="tw-flex">
-        <img class="tw-ml-4" style="cursor: pointer;" src="../../../assets/images/notifications.png" alt="">
-        <img class="tw-ml-4" style="cursor: pointer;" src=" ../../../assets/images/browser.png" alt="">
-        <img src="../../../assets/images/profile.png" style="cursor: pointer;" alt="">
-      </div>
+<header class="header-container">
+  <div class="header-content">
+    <button class="menu-toggle" (click)="toggleMobileMenu()">
+      <i class="pi pi-bars"></i>
+    </button>
+    <h4 class="header-title">مرحبا بعودتك</h4>
 
-
+    <div class="search-container">
+      <input type="text" pInputText class="search-input" pSize="large" placeholder="بحث" />
+      <i class="pi pi-search search-icon"></i>
     </div>
 
+    <div class="icons-container">
+      <img class="header-icon" src="../../../assets/images/notifications.png" alt="Notifications">
+      <img class="header-icon" src="../../../assets/images/browser.png" alt="Browser">
+      <img class="header-icon" src="../../../assets/images/profile.png" alt="Profile">
+    </div>
   </div>
-  <!-- <div
-    class="search-container tw-flex tw-items-center tw-border tw-border-blue-600 tw-rounded-full tw-py-1 tw-px-2 tw-bg-white"
-  >
-    <input
-      type="text"
-      placeholder="Search"
-      class="custom-placeholder tw-outline-none tw-flex-1 tw-text-lg tw-font-bold tw-placeholder-blue-600"
-    />
-    <i class="pi pi-search tw-text-blue-600 tw-text-2xl"></i>
-  </div> -->
+<div class="mobile-menu" [class.active]="isMobileMenuOpen">
+  <div class="mobile-search-container">
+    <input type="text" pInputText class="mobile-search-input" placeholder="بحث" />
+    <i class="pi pi-search mobile-search-icon"></i>
+  </div>
+  <div class="mobile-icons">
+    <div class="mobile-icon-item">
+      <img src="../../../assets/images/notifications.png" alt="Notifications">
+      <span>الإشعارات</span>
+    </div>
+    <div class="mobile-icon-item">
+      <img src="../../../assets/images/browser.png" alt="Browser">
+      <span>المتصفح</span>
+    </div>
+    <div class="mobile-icon-item">
+      <img src="../../../assets/images/profile.png" alt="Profile">
+      <span>الملف الشخصي</span>
+    </div>
+    <div class="mobile-icon-item">
+      <a routerLink="/accounts" class="mobile-link">
+        <img class="invert-image" src="../../../assets/images/users.png" alt="Users">
+        <span>الحسابات</span>
+      </a>
+    </div>
+    <div class="mobile-icon-item">
+      <a routerLink="/shipments" class="mobile-link">
+        <img class="invert-image" src="../../../assets/images/car icon.png" alt="Shipments">
+        <span>الشحنات</span>
+      </a>
+    </div>
+  </div>
+</div>
 </header>

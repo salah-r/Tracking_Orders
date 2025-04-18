@@ -1,44 +1,48 @@
-<div style="direction: rtl;" class="tw-flex  tw-flex-col tw-justify-center tw-items-center">
-  <div class="card card tw-w-full tw-mb-10">
+<div style="direction: rtl;" class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-px-2">
+  <div class="card tw-w-full lg:tw-w-[90%] tw-mb-10">
     <p-toast></p-toast>
 
     <p-toolbar styleClass="mb-4 gap-2">
       <ng-template pTemplate="end">
-        <div class="tw-flex tw-justify-between tw-w-full ">
+        <div
+          class="tw-flex tw-flex-col md:tw-flex-row tw-justify-between tw-w-full tw-gap-4 tw-items-start md:tw-items-center">
+<div class="search-container tw-w-full tw-p-4">
+  <div class="tw-flex tw-flex-col md:tw-flex-row tw-gap-4 md:tw-items-center">
 
-          <div class="search-container">
-            <div class="search-bar">
-              <div class="settings-icon">
+    <!-- Dropdown -->
+    <div class="tw-w-full md:tw-w-auto">
+      <p-dropdown (onChange)="getUserID($event)" [options]="filtersList"
+        class="tw-w-full tw-rounded-lg tw-shadow-sm tw-h-[48px] tw-border-0 focus:tw-ring-0"></p-dropdown>
+    </div>
+
+    <!-- Search Field -->
+    <div
+      class="tw-flex tw-items-center tw-w-full md:tw-w-[25vw] tw-rounded-full tw-bg-white tw-shadow-sm tw-px-4 tw-h-[48px] tw-border-0">
+
+      <!-- Search icon -->
+      <img src="../../../../../assets/images/search.png" alt="بحث" class="tw-w-5 tw-h-5 tw-mr-2 hidden md:block">
+
+      <input type="text" (input)="onUsersFiter($event)"
+        class="tw-w-full tw-bg-transparent tw-outline-none tw-text-right tw-text-sm md:tw-text-base tw-border-0 focus:tw-ring-0"
+        placeholder="بحث...">
+    </div>
+
+  </div>
+</div>
 
 
-                <p-dropdown (onChange)="getUserID($event)" [options]="filtersList"
-                  class="tw-w-full tw-p-2 tw-border tw-rounded"></p-dropdown>
-                <!-- <img class="pointer" src="../../../../../assets/images/filter.png" alt=""> -->
-              </div>
-
-              <div class="divider"></div>
-
-
-              <img src="../../../../../assets/images/search.png" alt="">
-
-              <input type="text" class="search-input" (input)="onUsersFiter($event)" placeholder="بحث...">
 
 
 
-            </div>
-          </div>
 
-          <button (click)="openNew()" pButton label="إضافة" class="p-button-primary"></button>
+          <button (click)="openNewUserDialog()" pButton label="إضافة"
+            class="p-button-primary tw-w-full md:tw-w-auto"></button>
         </div>
-
       </ng-template>
     </p-toolbar>
 
     <p-table #dt [value]="filteredUsers" [rows]="7" [paginator]="true"
       [globalFilterFields]="['firstName', 'email', 'id', 'address']" styleClass="p-datatable-striped">
-
-
-
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 3rem">
@@ -54,20 +58,18 @@
 
       <ng-template pTemplate="body" let-user>
         <tr>
-          <td>
-            <p-tableCheckbox [value]="user"></p-tableCheckbox>
-          </td>
+          <td><p-tableCheckbox [value]="user"></p-tableCheckbox></td>
           <td class="tw-p-2">{{user.firstName}}</td>
           <td class="tw-p-2">{{user.email}}</td>
           <td class="tw-p-2">{{user.phoneNumber}}</td>
           <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
-            <img class="pointer" src="../../../../../assets/images/eye.png" alt="">
+            <img class="pointer" src="../../../../../assets/images/eye.png" alt="عرض">
             <span class="tw-mr-1 pointer">عرض</span>
           </td>
           <td class="tw-p-2">
-            <div class="tw-flex gap-3">
-              <img (click)="editUser(user)" class="pointer " src="../../../../../assets/images/edit.png" alt="">
-              <img (click)="deleteUser(user)" class="pointer" src="../../../../../assets/images/trash.png" alt="">
+            <div class="tw-flex tw-gap-3">
+              <img (click)="editUser(user)" class="pointer" src="../../../../../assets/images/edit.png" alt="تعديل">
+              <img (click)="deleteUser(user)" class="pointer" src="../../../../../assets/images/trash.png" alt="حذف">
             </div>
           </td>
         </tr>
@@ -78,8 +80,8 @@
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
-<div *ngIf="accountDialogue">
-  <app-cerate-update-account [userDialogeValue]="accountDialogue" [user]="user"
+<div *ngIf="accountDialogVisible">
+  <app-cerate-update-account [userDialogeValue]="accountDialogVisible" [user]="user"
     (userDialog)="changeDialogStatus($event)" (UpdateData)="UpdateOwnerData($event)">
   </app-cerate-update-account>
 </div>

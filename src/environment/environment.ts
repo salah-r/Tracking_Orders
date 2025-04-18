@@ -1,5 +1,5 @@
 export const environment = {
-  APIURL: 'https://api.shipminttrack.com',
+  APIURL: 'https://localhost:7173',
   Token:
     '',
 };

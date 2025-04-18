@@ -20,10 +20,14 @@ export class CreateUpdateShipmentComponent {
   diffrentPass: boolean;
   viewPass: boolean = true;
   passwordError: string = '';
-  shippingStatus = [{ label: 'Pending', value: 0 }, { label: 'InProgress', value: 1 },
-  { label: 'InTransit', value: 2 }, { label: 'AtCustoms', value: 3 },
-  { label: 'OutForDelivery', value: 4 }, { label: 'Delivered', value: 5 },
-  { label: 'Delayed', value: 6 }, { label: 'Cancelled', value: 7 },
+  shippingStatus = [ { label: 'قيد الانتظار', value: 0 },       
+  { label: 'قيد التقدم', value: 1 },         
+  { label: 'في النقل', value: 2 },           
+  { label: 'في الجمارك', value: 3 },         
+  { label: 'خرج للتسليم', value: 4 },        
+  { label: 'تم التسليم', value: 5 },         
+  { label: 'متأخرة', value: 6 },             
+  { label: 'ملغية', value: 7 }              
   ]
 
 

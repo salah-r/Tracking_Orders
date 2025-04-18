@@ -1,99 +1,95 @@
-<div style="direction: rtl;" class="main-shipment tw-flex tw-justify-between tw-relative">
-  <img (click)="goBack()" class="pointer" style="position:absolute; top: -5px; right: -5px;"
+<div style="direction: rtl;" class="main-shipment tw-relative tw-p-4 tw-bg-white tw-rounded-lg tw-shadow-md">
+  <img (click)="goBack()" class="pointer tw-absolute tw-top-[-5px] tw-right-[-5px]"
     src="../../../../../assets/images/backbtn.png" alt="">
 
+  <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-6">
 
-  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center margin-right">
-    <span>رقم الشحنة</span>
-    <span class="orange">{{mainShipment?.trackingNumber}}</span>
-  </div>
-  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
-    <span>التاريخ المتوقع للوصول</span>
-    <span class="orange">{{mainShipment.expectedDeliveryDate}}</span>
-  </div>
+    <!-- Tracking Number -->
+    <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+      <span>رقم الشحنة</span>
+      <span class="orange">{{ mainShipment?.trackingNumber }}</span>
+    </div>
 
-  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
-    <span>الوجهة</span>
-    <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
+    <!-- Expected Delivery Date -->
+    <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+      <span>التاريخ المتوقع للوصول</span>
+      <span class="orange">{{ mainShipment.expectedDeliveryDate }}</span>
+    </div>
 
-      <img (click)="showDestinationDialog(mainShipment)" class="pointer" src="../../../../../assets/images/eye.png"
-        alt="">
-      <span (click)="showDestinationDialog(mainShipment)" class=" tw-mr-1 pointer">عرض</span>
-      <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
-        [resizable]="false">
+    <!-- Destination -->
+    <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+      <span>الوجهة</span>
+      <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
+        <img (click)="showDestinationDialog(mainShipment)" class="pointer" src="../../../../../assets/images/eye.png"
+          alt="">
+        <span (click)="showDestinationDialog(mainShipment)" class="tw-mr-1 pointer">عرض</span>
 
-        <ng-template pTemplate="header">
-          <div class="tw-flex tw-items-center tw-relative  tw-gap-2">
-            <img src="../../../../../assets/images/addbox.png" alt="">
-            <h2 class="tw-text-lg">المعلومات</h2>
-            <i style="left: 30px; position:fixed ;" class="pi pi-times tw-cursor-pointer" (click)="closeDialogue()"></i>
+        <p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '90vw', maxWidth: '500px' }"
+          [draggable]="false" [resizable]="false">
+          <ng-template pTemplate="header">
+            <div class="tw-flex tw-items-center tw-gap-2">
+              <img src="../../../../../assets/images/addbox.png" alt="">
+              <h2 class="tw-text-lg">المعلومات</h2>
+              <i style="position: absolute; left: 30px;" class="pi pi-times tw-cursor-pointer"
+                (click)="closeDialogue()"></i>
+            </div>
+          </ng-template>
+          <p>{{ destination }}</p>
+        </p-dialog>
+      </div>
+    </div>
 
-          </div>
-        </ng-template>
-
-        <p>
-          {{destination}}
-        </p>
-
-
-      </p-dialog>
+    <!-- Status -->
+    <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
+      <span>الحالة</span>
+      <div class="status tw-flex tw-items-center tw-gap-2">
+        <i class="pi pi-circle-on dot-icon"></i>
+        <ng-container [ngSwitch]="mainShipment.status">
+          <span *ngSwitchCase="'Delivered'">مكتملة</span>
+          <span *ngSwitchCase="'Pending'">جارية</span>
+          <span *ngSwitchCase="'Cancelled'">ملغية</span>
+          <span *ngSwitchCase="'InProgress'">قيد التقدم</span>
+          <span *ngSwitchCase="'InTransit'">في الشحن</span>
+          <span *ngSwitchCase="'AtCustoms'">في الجمارك</span>
+          <span *ngSwitchCase="'OutForDelivery'">خرج للتسليم</span>
+          <span *ngSwitchCase="'Delayed'">مؤجلة</span>
+        </ng-container>
+      </div>
     </div>
 
   </div>
-
-  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center">
-    <span>الحالة</span>
-    <div class="status">
-      <i class="pi pi-circle-on dot-icon"></i>
-      <span *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
-      <span *ngIf="mainShipment.status=='Pending'">جارية </span>
-      <span *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
-      <span *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
-      <span *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
-      <span *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
-      <span *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
-      <span *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
-
-    </div>
-  </div>
-
 </div>
 
 <div style="direction: rtl;" class="tw-flex tw-flex-col tw-justify-center tw-items-center">
   <div class="card card tw-w-full tw-mb-10">
     <p-toast></p-toast>
 
-    <p-toolbar styleClass="mb-4 gap-2">
-      <ng-template pTemplate="end">
-        <div class="tw-flex tw-justify-between tw-w-full tw-relative tw-items-center  ">
+<p-toolbar styleClass="mb-4 gap-2">
+  <ng-template pTemplate="end">
+    <!-- Flex container with responsive behavior -->
+    <div class="tw-flex tw-flex-col sm:tw-flex-row tw-justify-between tw-w-full tw-relative tw-items-center">
 
-          <div class="search-container">
-            <div class="search-bar">
-              <!-- <div class="settings-icon">
-                <img class="pointer" src="../../../../../assets/images/filter.png" alt="">
-              </div> -->
+      <!-- Search Container -->
+      <div class="search-container tw-w-full sm:tw-w-auto tw-mb-2 sm:tw-mb-0">
+        <div class="search-bar tw-flex tw-items-center tw-gap-2 tw-p-2 tw-border tw-rounded tw-w-full sm:tw-w-auto">
+          <!-- Divider -->
+          <div class="divider"></div>
 
-              <div class="divider"></div>
+          <!-- Search Icon -->
+          <img src="../../../../../assets/images/search.png" alt="">
 
-
-              <img src="../../../../../assets/images/search.png" alt="">
-
-              <input (input)="searchOnExtras($event)" type="text" class="search-input" placeholder="بحث...">
-
-
-
-            </div>
-
-            <!-- <div class="dropdown">
-              <img src="../../../../../assets/images/filter image.png" alt="">
-            </div> -->
-          </div>
-
-          <button (click)="openExtraDialoge(mainShipment)" pButton label="إضافة" class="p-button-primary"></button>
+          <!-- Search Input -->
+          <input (input)="searchOnExtras($event)" type="text" class="search-input tw-w-full sm:tw-w-auto"
+            placeholder="بحث...">
         </div>
+      </div>
 
-      </ng-template>
-    </p-toolbar>
+      <!-- Add Button -->
+      <button (click)="openExtraDialoge(mainShipment)" pButton label="إضافة"
+        class="p-button-primary tw-w-full sm:tw-w-auto tw-mt-2 sm:tw-mt-0"></button>
+    </div>
+  </ng-template>
+</p-toolbar>
 
     <p-table #dt [value]="filteredShipments" [rows]="7" [paginator]="true"
       [globalFilterFields]="['username', 'email', 'phone', 'address']" styleClass="p-datatable-striped">

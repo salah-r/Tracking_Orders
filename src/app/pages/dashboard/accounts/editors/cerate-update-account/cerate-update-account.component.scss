@@ -11,3 +11,18 @@ input {
 ::ng-deep button.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close.p-link.ng-star-inserted {
   display: none;
 }
+
+ ::ng-deep .responsive-dialog .p-dialog-content {
+   padding: 1rem !important;
+ }
+
+ @media (max-width: 640px) {
+   ::ng-deep .responsive-dialog .p-dialog-content {
+     padding: 0.75rem !important;
+   }
+ }
+
+ /* Make sure the error message is visible */
+ ::ng-deep .tw-text-red-500 {
+   color: #ef4444;
+ }

@@ -2,40 +2,39 @@
   <div class="card card tw-w-full tw-mb-10">
     <p-toast></p-toast>
 
-    <p-toolbar styleClass="mb-4 gap-2">
-      <ng-template pTemplate="end">
-        <div class="tw-flex tw-justify-between tw-w-full ">
-
-          <div class="search-container">
-            <div class="search-bar">
-              <div class="settings-icon">
-                <!-- <img class="pointer" src="../../../../../assets/images/filter.png" alt=""> -->
-
-                <p-dropdown (onChange)="getFilterMethod($event)" [options]="filtersList"
-                  class="tw-w-full tw-p-2 tw-border tw-rounded"></p-dropdown>
-              </div>
-
-              <div class="divider"></div>
-
-
-              <img src="../../../../../assets/images/search.png" alt="">
-
-              <input type="text" class="search-input" (input)="onMainShipmentFiter($event)" placeholder="بحث...">
-
-
-
-            </div>
-
-            <!-- <div class="dropdown">
-              <img src="../../../../../assets/images/filter image.png" alt="">
-            </div> -->
+<p-toolbar styleClass="tw-mb-4 tw-gap-2">
+  <ng-template pTemplate="end">
+    <div class="tw-flex tw-flex-col sm:tw-flex-row tw-justify-between tw-items-center tw-w-full tw-gap-4">
+      <!-- Search Container -->
+      <div class="tw-w-full sm:tw-w-auto search-container">
+        <div class="tw-flex tw-items-center tw-bg-gray-50 tw-border tw-rounded-xl tw-p-2 tw-gap-2">
+          <!-- Filter Dropdown -->
+          <div class="tw-flex-none">
+            <p-dropdown (onChange)="getFilterMethod($event)" [options]="filtersList"
+              class="tw-w-full sm:tw-w-32 tw-text-sm" styleClass="tw-border-0">
+            </p-dropdown>
           </div>
 
-          <button (click)="openNew()" pButton label="إضافة" class="p-button-primary"></button>
-        </div>
+          <!-- Divider -->
+          <div class="tw-w-px tw-h-6 tw-bg-gray-300 tw-mx-2"></div>
 
-      </ng-template>
-    </p-toolbar>
+          <!-- Search Input -->
+          <div class="tw-flex tw-items-center tw-flex-1 tw-gap-2">
+            <img src="../../../../../assets/images/search.png" alt="Search icon" class="tw-h-5 sm:tw-h-6">
+            <input type="text"
+              class="tw-w-full tw-bg-transparent tw-border-0 tw-placeholder-gray-400 focus:tw-outline-none"
+              (input)="onMainShipmentFiter($event)" placeholder="بحث...">
+          </div>
+        </div>
+      </div>
+
+      <!-- Add Button -->
+      <button (click)="openNew()" pButton label="إضافة"
+        class="tw-w-full sm:tw-w-auto tw-bg-orange-500 tw-text-white tw-py-2 tw-px-4 tw-rounded-xl hover:tw-bg-orange-600 tw-transition-colors tw-text-sm sm:tw-text-base">
+      </button>
+    </div>
+  </ng-template>
+</p-toolbar>
 
     <p-table #dt [value]="filteredShipments" [rows]="5" [paginator]="true"
       [globalFilterFields]="['trackingNumber', 'email', 'phone', 'address']" styleClass="p-datatable-striped">

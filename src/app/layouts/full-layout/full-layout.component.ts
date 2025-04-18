@@ -13,6 +13,8 @@ export class FullLayoutComponent implements OnInit, OnDestroy {
   isMobileView = false;
   isMenubarVisible = false;
   hideScrollbar: boolean = false;
+
+  
   constructor(private router: Router) { }
 
   ngOnInit(): void {
