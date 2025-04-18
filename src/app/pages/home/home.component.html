@@ -31,24 +31,27 @@
     <div class="null tw-absolute tw-top-8 tw-right-24 contact-info header-section">
       <div class="tw-flex  tw-items-center tw-content-center tw-gap-4 tw-text-white">
         <img style="width: 3.4vw;" src="../../../assets/images/clock icon.png" alt="">
-        <span class=" tw-text-sm tw-text-white sm:tw-text-xs ">من الاحد الى الجمعة من الساعة 9:00 صباحا حتى 4:00
+        <span class=" timeLine tw-text-white ">من الاحد الى الجمعة من الساعة 9:00 صباحا حتى 4:00
           بعد
           الظهر</span>
         <div class="tw-flex tw-gap-2 tw-align-middle tw-items-center   tw-content-center">
           <img style="width: 3.4vw;" src="../../../assets/images/call icon.png" alt="">
 
 
-          <span class=" sm:tw-text-xs tw-items-center
+          <!-- <span class=" sm:tw-text-xs tw-items-center
              tw-flex tw-gap-2 tw-align-middle  tw-content-center
              tw-m-auto tw-text-white">+965777738640</span>
           <span class=" sm:tw-text-xs tw-flex
             tw-gap-2 tw-align-middle  tw-content-center
             tw-m-auto tw-text-white">
-            +96551438214</span>
+            +96551438214</span> -->
           <span class=" sm:tw-text-xs
             tw-flex tw-gap-2 tw-align-middle  tw-content-center tw-m-auto
              tw-text-white">
-            +96599108551</span>
+            <a href="https://wa.me/96599108551" target="_blank"
+              style="text-decoration: none;color: white; cursor: pointer; ">96599108551+</a>
+
+          </span>
         </div>
       </div>
     </div>
@@ -73,7 +76,8 @@
           <i style="color: white;" class="pi pi-arrow-circle-left"></i>
           <span style="font-size: 22px; color: white;">تتبع</span>
         </button>
-        <input class="p-inputtext" [(ngModel)]="shipmentId" placeholder="ادخل رقم الشحنة" />
+        <input (keydown.enter)='getTheShipmentData()' class="p-inputtext" [(ngModel)]="shipmentId"
+          placeholder="ادخل رقم الشحنة" />
         <img class="box" src="../../../assets/images/box_icon.png" alt="">
       </div>
     </div>
@@ -303,19 +307,35 @@
       </div>
       <div class="tw-flex tw-items-center tw-my-2">
         <img src="../../../assets/images/call.png" alt="">
-        <span class="tw-text-white tw-font-extralight tw-text-sm tw-mr-3">96599188551+ , 96544438214+ ,
-          962797738460+</span>
+        <span class="tw-text-white tw-font-extralight tw-text-sm tw-mr-3">
+          <a target="_blank" href="https://wa.me/96599108551"
+            style="text-decoration: none;color: white; cursor: pointer; ">
+            96599188551+</a> ,
+
+          <a target="_blank" href="https://wa.me/96544438214"
+            style="text-decoration: none;color: white; cursor: pointer; ">
+            96544438214+ </a>
+          ,
+          <a target="_blank" href="https://wa.me/962797738460"
+            style=" text-decoration: none;color: white; cursor: pointer; ">
+            962797738460+</a>
+        </span>
       </div>
-      <div class="tw-flex tw-items-center tw-my-2">
+      <div class=" tw-flex tw-items-center tw-my-2">
         <img src="../../../assets/images/sms.png" alt="">
-        <span class="tw-text-white tw-font-extralight tw-text-sm tw-mr-3">{{'sultan@gmail.com'}}</span>
+        <span class="tw-text-white tw-font-extralight tw-text-sm tw-mr-3">
+          <a href="mailto:sultan@gmail.com" target="_blank"
+            style="text-decoration: none;color: white; cursor: pointer; ">
+            {{'sultan@gmail.com'}}</a>
+        </span>
       </div>
     </div>
 
   </div>
   <div class="line "></div>
 
-  <p class=" copy-rights tw-mt-0 tw-py-2 tw-text-center tw-text-white">جميع الحقوق محفوظة لشركة سلطان © 2025 | Powered
-    by UPNQ8</p>
+  <p class=" copy-rights tw-mt-0 tw-py-2 tw-text-center tw-text-white">جميع الحقوق محفوظة لشركة سلطان © 2025 |
+    <a style="text-decoration: none; color: white;" href="https://upnq8.com/en" target="_blank">Powered by UPNQ8</a>
+  </p>
 
 </div>

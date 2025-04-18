@@ -95,6 +95,22 @@ export class ViewShipmentDetailsComponent {
 
   }
 
+  getShipmentsDetails2() {
+    this.shipmentService.getMainShipmentById(this.mainShipment.id).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.mainShipment = res
+        localStorage.setItem('shipmentData', JSON.stringify(res))
+        this.shipments = res.customerShipments
+        this.filteredShipments = this.shipments
+      }
+    })
+
+    // console.log(this.mainShipment);
+
+
+  }
+
 
   getStatus(event: any) {
     console.log(event.value);
@@ -323,7 +339,7 @@ export class ViewShipmentDetailsComponent {
       next: (res: any) => {
         console.log(res);
         this.statusUpdateDialog = false
-        this.getShipmentsDetails()
+        this.getShipmentsDetails2()
       },
       error: (err: any) => {
         console.log(err);

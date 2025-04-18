@@ -50,7 +50,10 @@ export class ViewAllShipmentsComponent {
     private router: Router,
     private fb: FormBuilder,
     private messageService: MessageService
-  ) { }
+  ) {
+
+
+  }
 
   ngOnInit(): void {
     // document.addEventListener('keydown', this.handleEscapeKey.bind(this));
@@ -184,6 +187,7 @@ export class ViewAllShipmentsComponent {
       this.shipmentService.addExtraShipment(cerateBody, this.updatedMainShipment.id).subscribe({
         next: (res: any) => {
           console.log(res.data);
+          this.getAllMainShipments()
           this.closeExtraDialoge()
 
           this.messageService.add({
@@ -208,7 +212,7 @@ export class ViewAllShipmentsComponent {
 
 
   getAllMainShipments() {
-    this.shipmentService.getAllMainShipments().subscribe({
+    this.shipmentService.getAllMainShipments(this.token).subscribe({
       next: (resposnse) => {
         this.shipments = resposnse;
         console.log(this.shipments);
@@ -321,7 +325,7 @@ export class ViewAllShipmentsComponent {
   openStatusDialoge(mainShipment: any) {
     this.statusUpdateDialog = true;
     this.updatedMainShipment = mainShipment
-    console.log(this.updatedMainShipment);
+    // console.log(this.updatedMainShipment);
 
 
   }

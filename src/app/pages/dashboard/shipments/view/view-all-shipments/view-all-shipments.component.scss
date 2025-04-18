@@ -223,3 +223,7 @@ input {
   border: 0;
   height: 48px;
 }
+
+::ng-deep div.p-element.ng-trigger.ng-trigger-animation.tw-rtl.p-dialog.p-component.ng-star-inserted {
+  width: 500px !important;
+}

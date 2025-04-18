@@ -50,7 +50,7 @@ export class CerateUpdateAccountComponent {
   userForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['',],
-    email: ['', Validators.required],
+    email: ['', Validators.required, Validators.email],
     shippingAddress: ['',],
     password: ['',],
     phone: ['',],
@@ -138,7 +138,9 @@ export class CerateUpdateAccountComponent {
 
         // add func
       } else {
-        this.viewPass = false
+        this.viewPass = true
+        console.log('create case ');
+
 
         if (this.password.value === this.rePassword.value) {
 
@@ -157,12 +159,14 @@ export class CerateUpdateAccountComponent {
               });
             },
             error: (err) => {
-              console.log(err),
-                this.passwordError = 'Password should be at least 8 digits and should contains Lowercase, NonAlphanumeric and Uppercase'
+              console.log(err)
 
             }
           });
         } else {
+          this.passwordError = ` Passords are different &
+          Password should be at least 8 digits and should contains Lowercase, NonAlphanumeric and Uppercase
+          `
           this.diffrentPass = true
         }
       }

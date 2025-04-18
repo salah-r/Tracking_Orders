@@ -188,7 +188,7 @@
 
     <div class="tw-mt-6 tw-flex tw-justify-center">
       <button (click)="saveExtraShipment()"
-        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        class=" margin-top tw-mt-6 tw-p-2 tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
         إضافة
       </button>
     </div>
@@ -199,7 +199,7 @@
 
 <!-- dialog to add info  -->
 
-<p-dialog style="direction: rtl;" [visible]="statusUpdateDialog" [modal]="true" [style]="{width: '50vw'}"
+<p-dialog style="direction: rtl;" [visible]="statusUpdateDialog" [modal]="true" [style]="{width: '500px'}"
   [draggable]="false" [resizable]="false" styleClass="tw-rtl">
 
   <ng-template pTemplate="header">
@@ -244,9 +244,9 @@
 
     </div>
 
-    <div class="tw-mt-6 tw-flex tw-justify-center">
+    <div class="tw-mt-3 tw-flex tw-justify-center">
       <button (click)="updateMainshipmentStatus()"
-        class=" margin-top tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
+        class=" tw-mt-3 tw-p-2 tw-w-1/4 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-lg hover:tw-bg-orange-600 tw-transition-colors">
         إضافة
       </button>
     </div>

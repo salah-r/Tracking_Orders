@@ -154,7 +154,7 @@ export class ApiConnService {
 
   updateData(endPoint: string, id: number, updatedData: any) {
     return this.http
-      .put(`${this.apiurl}/${endPoint}/${id}`, updatedData, {
+      .post(`${this.apiurl}/${endPoint}/Update/${id}`, updatedData, {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           Accept: '*/*',

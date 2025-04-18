@@ -117,6 +117,8 @@ import { OrderDetailsComponent } from './pages/order-details/order-details.compo
 import { ViewAllAccountsComponent } from './pages/dashboard/accounts/view/view-all-accounts/view-all-accounts.component';
 import { ViewAllShipmentsComponent } from './pages/dashboard/shipments/view/view-all-shipments/view-all-shipments.component';
 import { ViewShipmentDetailsComponent } from './pages/dashboard/detailled-shipment/view/view-shipment-details/view-shipment-details.component';
+import { CreateUpdateShipmentComponent } from './pages/dashboard/shipments/editors/create-update-shipment/create-update-shipment.component';
+import { CerateUpdateAccountComponent } from './pages/dashboard/accounts/editors/cerate-update-account/cerate-update-account.component';
 
 
 
@@ -137,8 +139,9 @@ register();
     OrderDetailsComponent,
     ViewAllShipmentsComponent,
     ViewAllAccountsComponent,
-    ViewShipmentDetailsComponent
-
+    CerateUpdateAccountComponent,
+    ViewShipmentDetailsComponent,
+    CreateUpdateShipmentComponent
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line

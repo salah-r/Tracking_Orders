@@ -84,8 +84,8 @@ export class ShipmentService {
   endPoint: string = 'api/MainShipment';
 
   // ================== API Calls ==================
-  getAllMainShipments() {
-    return this.apiService.getData(`${this.endPoint}`);
+  getAllMainShipments(Token: any) {
+    return this.apiService.fristGetData(`${this.endPoint}`, Token);
   }
 
   getPopulatedMainShipments() {

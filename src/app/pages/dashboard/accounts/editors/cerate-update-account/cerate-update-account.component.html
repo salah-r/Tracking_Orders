@@ -30,7 +30,7 @@
         <div *ngIf="viewPass == true" class="tw-flex-1">
           <label class="tw-block tw-mb-2 tw-text-right">كلمة المرور</label>
           <div class="tw-relative tw-flex tw-gap-2">
-            <input formControlName="password" type=" password"
+            <input formControlName="password" type="password"
               class="tw-w-full tw-p-2 tw-border-0 tw-rounded-xl tw-bg-gray-50" placeholder="كلمة المرور">
             <img src="../../../../../assets/images/replace.png" alt="">
 
@@ -88,6 +88,9 @@
       </div>
     </div>
 
+    <p style="color: red;"> {{passwordError}}
+    </p>
+
     <div class="tw-mt-4 tw-flex tw-justify-center">
       <button
         class="tw-w-1/2 tw-bg-orange-500 tw-text-white tw-border-0 tw-py-2 tw-rounded-xl hover:tw-bg-orange-600 tw-transition-colors"
@@ -97,7 +100,12 @@
       </button>
     </div>
 
-    {{passwordError}}
   </div>
+
+  <!-- <p-dialog style="width: 75%;" [visible]="diffrentPass">
+
+    <h3 style="color: red;"> {{passwordError}}</h3>
+  </p-dialog> -->
+
 
 </p-dialog>
