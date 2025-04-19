@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Isub } from 'src/app/interfaces/isub';
 import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -20,10 +20,13 @@ export class ViewAllAccountsComponent {
   filtersList: any[] = ['Email', 'Name', "Phone"]
   filtringMethod: any = 'Email';
   token: string;
+  visible: boolean;
+  destination: any;
 
   constructor(
     private confirmationService: ConfirmationService,
     private accountService: AccountService,
+    private ref: ChangeDetectorRef,
     private messageService: MessageService
   ) {
     this.token = localStorage.getItem('auth_token')
@@ -139,8 +142,15 @@ export class ViewAllAccountsComponent {
   }
 
 
+
+  showDestinationDialog(user: any) {
+    this.visible = true;
+    this.destination = user.shippingAddress
+  }
+
   editUser(user: any) {
     this.user = { ...user };
+    this.ref.detectChanges()
     this.accountDialogue = true;
   }
   // updatePrimaryMemberData(updateData: boolean) {

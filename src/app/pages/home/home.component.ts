@@ -82,6 +82,12 @@ export class HomeComponent {
     }
   }
 
+
+  goLogOut() {
+    localStorage.clear()
+    this.router.navigate(['/signin'])
+  }
+
   getTheShipmentData() {
     // console.log(this.shipmentId);
     let token = localStorage.getItem('auth_token')
@@ -129,6 +135,8 @@ export class HomeComponent {
     this.shipmentsService.checkShipmentNumber(id, this.token).subscribe({
       next: (res: any) => {
         console.log(res);
+        localStorage.setItem('ExtraShipment', JSON.stringify(res))
+
         if (res != null) {
           this.router.navigate(['/order-details'],
             { state: { data: res } });

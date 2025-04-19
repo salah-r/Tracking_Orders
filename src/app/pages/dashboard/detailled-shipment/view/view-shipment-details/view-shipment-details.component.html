@@ -45,14 +45,14 @@
     <span>الحالة</span>
     <div class="status">
       <i class="pi pi-circle-on dot-icon"></i>
-      <span *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
-      <span *ngIf="mainShipment.status=='Pending'">جارية </span>
-      <span *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
-      <span *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
-      <span *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
-      <span *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
-      <span *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
-      <span *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Pending'">جارية </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
+      <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
 
     </div>
   </div>
@@ -63,9 +63,10 @@
   <div class="card card tw-w-full tw-mb-10">
     <p-toast></p-toast>
 
-    <p-toolbar styleClass="mb-4 gap-2">
+    <p-toolbar styleClass="mb-4 gap-2" *ngIf="shipments.length>0">
       <ng-template pTemplate="end">
-        <div class="tw-flex tw-justify-between tw-w-full tw-relative tw-items-center  ">
+
+        <div class="tw-flex tw-justify-between container tw-relative tw-items-center  ">
 
           <div class="search-container">
             <div class="search-bar">
@@ -78,7 +79,7 @@
 
               <img src="../../../../../assets/images/search.png" alt="">
 
-              <input (input)="searchOnExtras($event)" type="text" class="search-input" placeholder="بحث...">
+              <input (input)="searchOnExtras($event)" type="text" class="search-input" placeholder="  بحث بالرقم...">
 
 
 
@@ -95,7 +96,7 @@
       </ng-template>
     </p-toolbar>
 
-    <p-table #dt [value]="filteredShipments" [rows]="7" [paginator]="true"
+    <p-table *ngIf="shipments.length>0" #dt [value]="filteredShipments" [rows]="7" [paginator]="true"
       [globalFilterFields]="['username', 'email', 'phone', 'address']" styleClass="p-datatable-striped">
 
 
@@ -105,11 +106,11 @@
           <!-- <th style="width: 3rem">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th> -->
-          <th class="tw-p-2">الرقم الفرعي</th>
-          <th class="tw-p-2">معلومات العميل</th>
-          <th class="tw-p-2">عنوان التسليم</th>
-          <th class="tw-p-2">الحالة</th>
-          <th class="tw-p-2"></th>
+          <th class="  tw-p-2 tw-text-nowrap">الرقم الفرعي</th>
+          <th class="  tw-p-2 tw-text-nowrap">معلومات العميل</th>
+          <th class="  tw-p-2 tw-text-nowrap">عنوان التسليم</th>
+          <th class="  tw-p-2 tw-text-nowrap">الحالة</th>
+          <th class="  tw-p-2 "></th>
         </tr>
       </ng-template>
 
@@ -118,7 +119,7 @@
           <!-- <td>
             <p-tableCheckbox [value]="shipment"></p-tableCheckbox>
           </td> -->
-          <td class="tw-p-2 orange">{{shipment.trackingNumber}}</td>
+          <td class="tw-p-2 orange tw-text-nowrap">{{shipment.trackingNumber}}</td>
           <td class="tw-p-2">
             <div class="tw-flex tw-gap-1 tw-items-center tw-justify-center">
 
@@ -140,14 +141,14 @@
           <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
             <div class="status">
               <i class="pi pi-circle-on dot-icon"></i>
-              <span *ngIf="shipment.status=='Delivered'">مكتملة</span>
-              <span *ngIf="shipment.status=='Pending'">جارية </span>
-              <span *ngIf="shipment.status=='Cancelled'">ملغية </span>
-              <span *ngIf="shipment.status=='InProgress'">قيد التقدم </span>
-              <span *ngIf="shipment.status=='InTransit'">في الشحن </span>
-              <span *ngIf="shipment.status=='AtCustoms'">في الجمارك </span>
-              <span *ngIf="shipment.status=='OutForDelivery'">خرج للتسليم </span>
-              <span *ngIf="shipment.status=='Delayed'">مؤجلة </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='Delivered'">مكتملة</span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='Pending'">جارية </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='Cancelled'">ملغية </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='InProgress'">قيد التقدم </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='InTransit'">في الشحن </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='AtCustoms'">في الجمارك </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='OutForDelivery'">خرج للتسليم </span>
+              <span class="tw-text-nowrap" *ngIf="shipment.status=='Delayed'">مؤجلة </span>
             </div>
 
           </td>
@@ -167,10 +168,15 @@
         </tr>
       </ng-template>
     </p-table>
+
+    <div *ngIf="shipments.length==0">
+      <h3>لا توجد شحنات فرعية في هذه الشحنة </h3>
+    </div>
+
   </div>
 </div>
 
-<div style="direction: rtl;" class="content tw-mt-5 tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
+<!-- <div style="direction: rtl;" class="content tw-mt-5 tw-justify-center tw-flex-wrap tw-flex tw-pb-8">
 
   <ng-container *ngFor="let item of mainShipment.updates; let i = index">
 
@@ -184,11 +190,9 @@
       <div class="tw-flex container  details tw-my-2">
         <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_location.png" alt="">
         <div class="tw-flex-col tw-mr-2  tw-flex  tw-justify-center tw-items-center tw-content-center">
-          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
           <p class="tw-m-0 tw-text-sm">{{item.location}}</p>
           <div class="tw-flex tw-items-center ">
-            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
-            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+
           </div>
         </div>
 
@@ -209,11 +213,9 @@
       <div class="tw-flex container  details tw-my-2">
         <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_calender.png" alt="">
         <div class="tw-flex-col tw-mr-2  tw-justify-center tw-items-center tw-content-center tw-flex">
-          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
           <p class="tw-m-0 tw-text-sm">{{mainShipment.expectedDeliveryDate|date:"dd/MM/YYYY"}}</p>
           <div class="tw-flex tw-items-center ">
-            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
-            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+
           </div>
         </div>
 
@@ -235,11 +237,9 @@
       <div class="tw-flex container  tw-items-center tw-justify-between details tw-my-2">
         <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_list.png" alt="">
         <div class="tw-flex-col tw-mr-2  tw-flex  tw-justify-center tw-items-center tw-content-center">
-          <!-- <span style="font-size: 8px; color: #89898A;">23/7/2025</span> -->
           <p class="tw-m-0 tw-text-sm"> {{item.notes}}</p>
           <div class="tw-flex tw-items-center ">
-            <!-- <img src="../../../../../assets/images/small-profile.png" alt=""> -->
-            <!-- <span class="small-text">الموظف المسئول : اسم الموظف</span> -->
+
           </div>
 
         </div>
@@ -254,7 +254,77 @@
 
   </ng-container>
 
+</div> -->
+
+<div style="direction: rtl;" class="tw-mt-5 tw-pb-8 tw-pt-8 content">
+  <div class="tw-flex tw-flex-col tw-gap-6 tw-px-4">
+
+    <ng-container *ngFor="let item of mainShipment.updates; let i = index">
+      <!-- Wrap each group of 3 cards inside its own grid -->
+      <div class="tw-grid tw-gap-4 tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3">
+
+        <!-- Location Update Card -->
+        <div class="tw-bg-white tw-p-5 tw-flex tw-flex-col tw-shadow-sm tw-rounded-lg">
+          <div *ngIf="i == 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">تحديثات المكان</p>
+            <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+              src="../../../../../assets/images/add.png" alt="">
+          </div>
+          <div *ngIf="i != 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">المكان</p>
+          </div>
+          <div class="tw-flex tw-my-2 tw-items-center">
+            <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_location.png" alt="">
+            <div class="tw-flex tw-flex-col tw-mr-2 tw-items-center">
+              <p class="tw-m-0 tw-text-sm">{{ item.location }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Expected Date Card -->
+        <div class="tw-bg-white tw-p-5 tw-flex tw-flex-col tw-shadow-sm tw-rounded-lg">
+          <div *ngIf="i == 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">تحديثات تاريخ الوصول</p>
+            <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+              src="../../../../../assets/images/add.png" alt="">
+          </div>
+          <div *ngIf="i != 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">تاريخ الوصول</p>
+          </div>
+          <div class="tw-flex tw-my-2 tw-items-center">
+            <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_calender.png" alt="">
+            <div class="tw-flex tw-flex-col tw-mr-2 tw-items-center">
+              <p class="tw-m-0 tw-text-sm">{{ mainShipment.expectedDeliveryDate | date: 'dd/MM/YYYY' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes Update Card -->
+        <div class="tw-bg-white tw-p-5 tw-flex tw-flex-col tw-shadow-sm tw-rounded-lg">
+          <div *ngIf="i == 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">تحديثات الملاحظات</p>
+            <img (click)="openMainShimentStatusDialoge(mainShipment)" class="pointer"
+              src="../../../../../assets/images/add.png" alt="">
+          </div>
+          <div *ngIf="i != 0" class="tw-flex tw-justify-between tw-items-center">
+            <p class="tw-m-0">الملاحظات</p>
+          </div>
+          <div class="tw-flex tw-my-2 tw-items-center tw-justify-between">
+            <img style="width: 50px; height: 50px;" src="../../../../../assets/images/content_list.png" alt="">
+            <div class="tw-flex tw-flex-col tw-mr-2 tw-items-center">
+              <p class="tw-m-0 tw-text-sm">{{ item.notes }}</p>
+            </div>
+            <img (click)="showStatus(item.notes)" style="width: 24px; height: 24px; cursor: pointer;"
+              src="../../../../../assets/images/arrow-left.png" alt="">
+          </div>
+        </div>
+
+      </div>
+    </ng-container>
+
+  </div>
 </div>
+
 
 
 
@@ -264,6 +334,23 @@
 
 
 
+<p-dialog [visible]="showStatusValue" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false"
+  styleClass="tw-rtl">
+
+  <ng-template pTemplate="header">
+    <div class="tw-flex tw-items-center tw-relative  tw-gap-2">
+      <h2 class="tw-text-lg">الملاحظة</h2>
+      <i style="left: 30px; position:fixed ;" class="pi pi-times tw-cursor-pointer" (click)="closeDialogue()"></i>
+
+    </div>
+  </ng-template>
+
+
+  <h3>{{shownStatus}}</h3>
+
+
+
+</p-dialog>
 
 <!-- dialogue to add extras shipment -->
 

@@ -269,6 +269,8 @@
 
 .thirdPage {
   background-color: #F7F7F7;
+  width: 100% !important;
+  margin-top: 40px;
 }
 
 .footer {
@@ -283,6 +285,10 @@
   padding: 12px 24px;
   cursor: pointer;
   transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  -ms-transition: background 0.3s;
+  -o-transition: background 0.3s;
 }
 
 .p-button:hover {
@@ -325,12 +331,33 @@
 
 
 
-@media screen and (min-width: 1850px) {
+@media screen and (min-width: 1610px) {
 
   .logo {
     margin-top: 10px;
   }
 }
+
+@media screen and (max-width: 1168px) {
+
+  .logo {
+    margin-top: -10px;
+  }
+
+  .loginBtn {
+    height: 65px !important;
+  }
+}
+
+@media screen and (max-width: 885px) {
+
+  .timeLine {
+    font-size: 12px !important;
+  }
+}
+
+
+
 
 @media screen and (max-width: 768px) {
 
@@ -507,10 +534,79 @@
 }
 
 
+
+
 .back {
   background-color: rgba($color: #000000, $alpha: .7);
 }
 
-.timeLine {
-  font-size: 16.4px !important;
+
+@media (min-width: 885px) {
+  .timeLine {
+    font-size: 16.4px !important;
+  }
+}
+
+@media (max-height: 450px) {
+
+
+  .tw-h-screen {
+    height: 135vh !important;
+  }
+}
+
+
+.carousel-container {
+  max-width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.custom-swiper {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+.swiper-slide-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  /* Create the rounded ends effect like in Figma */
+  position: relative;
+}
+
+.image-container img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Style pagination to match Figma design */
+::ng-deep .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+::ng-deep .swiper-pagination-bullet-active {
+  background: #000;
+}
+
+/* For responsive design */
+@media (min-width: 768px) {
+  .image-container {
+    max-width: 45vw;
+  }
+
+  // .image-container img {
+  //   height: 36vh;
+  // }
 }

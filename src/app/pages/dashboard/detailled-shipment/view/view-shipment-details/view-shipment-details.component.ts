@@ -37,13 +37,15 @@ export class ViewShipmentDetailsComponent {
   usersList: any;
   parentShipment: any;
   placeholder: any = 'العميل';
-  filteredShipments: any;
+  filteredShipments: any[] = [];
   selectedStatus: any;
   place: any;
   notes: any;
   editedShipment: any;
   mainShimpentStatusUpdateDialog: boolean;
   selectedDate: any;
+  showStatusValue: boolean;
+  shownStatus: any;
 
   constructor(
     private shipmentService: ShipmentService,
@@ -117,6 +119,10 @@ export class ViewShipmentDetailsComponent {
     this.selectedStatus = event.value.value
     console.log(this.selectedStatus);
   }
+  showStatus(status: any) {
+    this.showStatusValue = true
+    this.shownStatus = status
+  }
 
 
 
@@ -182,12 +188,12 @@ export class ViewShipmentDetailsComponent {
 
   closeDialogue() {
 
+    this.showStatusValue = false
     this.statusUpdateDialog = false
     this.visible = false
     this.deleteExtra = false
     this.extraShipment = false
     this.mainShimpentStatusUpdateDialog = false
-    console.log(this.statusUpdateDialog);
 
   }
 

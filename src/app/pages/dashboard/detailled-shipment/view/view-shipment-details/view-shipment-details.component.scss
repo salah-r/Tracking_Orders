@@ -52,8 +52,13 @@
   height: 50px;
 }
 
+.container {
+  width: 75vw !important;
+}
+
 .p-button-primary {
-  margin-right: 11.5vw;
+  position: absolute;
+  left: 7.5vw;
   background-color: #F36E22;
   padding: 5px !important;
   width: 10.5vw;
@@ -67,7 +72,6 @@
   -o-border-radius: 25px;
   height: 6vh;
 }
-
 
 td {
   margin: 0;
@@ -112,8 +116,9 @@ td {
 
 .status {
   color: #006400;
+  padding: 12px !important;
   height: 30px;
-  width: 7.4vw;
+  // width: 7.4vw;
   background-color: #D6E6D6;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -159,7 +164,7 @@ td {
   width: 100%;
   font-size: 16px;
   padding: 0 10px;
-  margin-right: 10px;
+  // margin-right: 10px;
   direction: rtl;
   color: #333;
   width: 37vw;
@@ -244,4 +249,51 @@ td {
 
 ::ng-deepbutton.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close.p-link.ng-star-inserted {
   display: none;
+}
+
+
+::ng-deep div.mb-4.gap-2.p-toolbar.p-component {
+  position: relative !important;
+}
+
+::ng-deep div.p-toolbar.p-component {
+  position: relative !important;
+}
+
+::ng-deep div.p-toolbar-group-right.p-toolbar-group-end.ng-star-inserted {
+  width: 100%;
+}
+
+::ng-deep div.tw-flex.tw-justify-between.container.tw-relative.tw-items-center.ng-star-inserted {
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+
+  .main-shipment {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .search-bar {
+    width: 55vw !important;
+  }
+
+  ::ng-deep div.p-element.ng-trigger.ng-trigger-animation.p-dialog.p-component.ng-star-inserted {
+    width: 98vw !important;
+  }
+
+
+  .p-button-primary {
+    position: absolute;
+    left: 3.5vw;
+    width: 55px !important;
+    margin-top: 9px !important;
+    border-radius: 12px !important;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    -ms-border-radius: 12px !important;
+    -o-border-radius: 12px !important;
+  }
 }

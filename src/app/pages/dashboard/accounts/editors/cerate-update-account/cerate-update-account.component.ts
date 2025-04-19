@@ -28,6 +28,8 @@ export class CerateUpdateAccountComponent {
   ngOnInit(): void {
     this.setFormValues();
     if (this.user != null) {
+      console.log(this.user);
+
       this.viewPass = false
     }
 
@@ -50,7 +52,7 @@ export class CerateUpdateAccountComponent {
   userForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['',],
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     shippingAddress: ['',],
     password: ['',],
     phone: ['',],

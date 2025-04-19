@@ -102,8 +102,9 @@
 
 .status {
   color: #006400;
+  padding: 12px !important;
   height: 30px;
-  width: 7.4vw;
+  // width: 7.4vw;
   background-color: #D6E6D6;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -226,4 +227,89 @@ input {
 
 ::ng-deep div.p-element.ng-trigger.ng-trigger-animation.tw-rtl.p-dialog.p-component.ng-star-inserted {
   width: 500px !important;
+}
+
+
+@media (max-width: 1024px) and (min-width: 890px) {
+  .search-bar {
+    width: 40vw;
+  }
+}
+
+
+@media (max-width: 890px)and (min-width: 771px) {
+
+  .search-bar {
+    width: 50vw;
+  }
+
+  .p-button-primary {
+    position: absolute;
+    left: 3.5vw;
+  }
+
+}
+
+@media (max-width: 770px) and (min-width: 580px) {
+
+  .search-bar {
+    width: 55vw;
+  }
+
+  .p-button-primary {
+    position: absolute;
+    left: 3.5vw;
+  }
+
+}
+
+// @media (max-width: 579px) and (min-width: 580px) {
+@media (max-width: 600px)and (min-width: 540px) {
+
+  .search-bar {
+    width: 60vw;
+  }
+
+  .p-button-primary {
+    position: absolute;
+    left: 3.5vw;
+  }
+
+}
+
+@media (max-width: 540px) {
+
+  .search-bar {
+    width: 60vw;
+  }
+
+  label {
+    font-size: 12px !important;
+  }
+
+
+
+  .p-button-primary {
+    position: absolute;
+    left: 3.5vw;
+    width: 55px !important;
+    margin-top: 9px !important;
+    border-radius: 12px !important;
+    -webkit-border-radius: 12px !important;
+    -moz-border-radius: 12px !important;
+    -ms-border-radius: 12px !important;
+    -o-border-radius: 12px !important;
+
+  }
+
+  ::ng-deep span.p-element.p-dropdown-label.p-inputtext.ng-star-inserted {
+    display: none;
+  }
+
+
+
+  ::ng-deep div.tw-w-full.tw-bg-gray-50.p-dropdown.p-component.p-inputwrapper {
+    height: 50px !important;
+  }
+
 }

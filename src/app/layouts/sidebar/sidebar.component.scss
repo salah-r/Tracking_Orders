@@ -50,7 +50,7 @@
 }
 
 .sidebar.expanded .link-content {
-  display: inline-block !important;
+  display: inline-block;
   /* Ensure inline display */
   margin-left: 10px !important;
   /* Add margin to create space between the icon and text */
@@ -245,4 +245,38 @@ a {
 .orderImage {
   position: fixed;
   bottom: 0;
+}
+
+
+
+@media (max-width: 1024px) and (min-width:767px) {
+
+  span {
+    display: none !important;
+  }
+
+  .sidebar.expanded .hover-left-border {
+    display: flex;
+    justify-content: center;
+  }
+
+  .icons {
+    width: 40px !important;
+  }
+
+  .orderImage {
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+
+    img {
+      width: 120px;
+
+
+    }
+  }
+
+
+
+
 }

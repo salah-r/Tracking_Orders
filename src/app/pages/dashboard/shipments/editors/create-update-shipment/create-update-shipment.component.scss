@@ -11,3 +11,17 @@ input {
 ::ng-deep button.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close.p-link.ng-star-inserted {
   display: none;
 }
+
+
+@media (max-width: 768px) {
+
+
+  label {
+    font-size: 12px !important;
+  }
+
+
+  ::ng-deep span.p-element.p-dropdown-label.p-inputtext.ng-star-inserted {
+    display: block;
+  }
+}

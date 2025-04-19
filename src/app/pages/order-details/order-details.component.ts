@@ -13,10 +13,15 @@ export class OrderDetailsComponent {
 
 
   constructor(private router: Router) {
+
+  }
+  ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as { data: any };
-    this.shipmentData = state?.data;
+
+    this.shipmentData = state?.data || JSON.parse(localStorage.getItem('ExtraShipment'));
     console.log(this.shipmentData);
+
 
   }
 

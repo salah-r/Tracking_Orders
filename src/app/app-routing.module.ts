@@ -12,18 +12,18 @@ import { adminGuard } from './shared/gaurds/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'signin', component: SignInComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'signin', component: SignInComponent },
   { path: 'order-details', component: OrderDetailsComponent },
   { path: 'accounts', component: ViewAllAccountsComponent, canActivate: [adminGuard] },
   { path: 'shipments', component: ViewAllShipmentsComponent, canActivate: [adminGuard] },
-  { path: 'shipment-details', component: ViewShipmentDetailsComponent, canActivate: [adminGuard] }
-
+  { path: 'shipment-details', component: ViewShipmentDetailsComponent, canActivate: [adminGuard] },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' },
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

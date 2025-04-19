@@ -44,11 +44,11 @@
 
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 3rem">
+          <!-- <th style="width: 3rem">
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
-          <th class="tw-p-2">رقم الشحنة</th>
-          <th class="tw-p-2">التاريخ المتوقع للوصول</th>
+          </th> -->
+          <th class="tw-p-2 tw-text-nowrap">رقم الشحنة</th>
+          <th class="tw-p-2 tw-text-nowrap">التاريخ المتوقع للوصول</th>
           <th class="tw-p-2">الوجهة</th>
           <th class="tw-p-2">الحالة</th>
           <th class="tw-p-2"></th>
@@ -57,9 +57,9 @@
 
       <ng-template pTemplate="body" let-mainShipment>
         <tr>
-          <td>
+          <!-- <td>
             <p-tableCheckbox [value]="mainShipment"></p-tableCheckbox>
-          </td>
+          </td> -->
           <td class="tw-p-2 orange tw-text-nowrap">{{mainShipment.trackingNumber}}</td>
           <td class="tw-p-2">{{mainShipment.expectedDeliveryDate |date :"dd/MM/yyyy"}}</td>
           <td class="tw-p-2">
@@ -82,14 +82,14 @@
           <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
             <div class="status">
               <i class="pi pi-circle-on dot-icon"></i>
-              <span *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
-              <span *ngIf="mainShipment.status=='Pending'">جارية </span>
-              <span *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
-              <span *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
-              <span *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
-              <span *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
-              <span *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
-              <span *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Delivered'">مكتملة</span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Pending'">جارية </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Cancelled'">ملغية </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='InProgress'">قيد التقدم </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='InTransit'">في الشحن </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='AtCustoms'">في الجمارك </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='OutForDelivery'">خرج للتسليم </span>
+              <span class="tw-text-nowrap" *ngIf="mainShipment.status=='Delayed'">مؤجلة </span>
 
             </div>
 

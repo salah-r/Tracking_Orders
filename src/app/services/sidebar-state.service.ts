@@ -11,7 +11,7 @@ export class SidebarStateService {
   private isMenubarVisibleSubject = new BehaviorSubject<boolean>(false);
   isMenubarVisible$ = this.isMenubarVisibleSubject.asObservable();
 
-  constructor() {}
+  constructor() { }
 
   toggleSidebar() {
     const currentState = this.isSidebarExpandedSubject.getValue();

@@ -13,7 +13,9 @@ export class HeaderComponent implements OnInit {
   isDropdownOpen = false;
 
   toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+    if (this.isMobileView) {
+      this.isDropdownOpen = !this.isDropdownOpen;
+    }
   }
   onLinkClick() {
     this.isDropdownOpen = false;

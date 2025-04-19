@@ -295,6 +295,8 @@ export class ViewAllShipmentsComponent {
 
   editMainShipment(mainShipment: any) {
     this.mainShipment = { ...mainShipment };
+
+
     this.shipmentDailogue = true;
   }
 

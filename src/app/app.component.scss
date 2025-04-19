@@ -10,3 +10,31 @@
 div {
   overflow: hidden !important;
 }
+
+
+// to modifiy the paginator buttons shape
+::ng-deep button.p-ripple.p-element.p-paginator-next.p-paginator-element.p-link {
+  rotate: 180deg !important;
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-last.p-paginator-element.p-link.ng-star-inserted {
+  rotate: 180deg !important;
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-first.p-paginator-element.p-link.ng-star-inserted.p-disabled {
+  rotate: 180deg !important;
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-first.p-paginator-element.p-link.ng-star-inserted {
+  rotate: 180deg !important;
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-prev.p-paginator-element.p-link.p-disabled {
+  rotate: 180deg !important;
+}
+
+::ng-deep button.p-ripple.p-element.p-paginator-prev.p-paginator-element.p-link {
+  rotate: 180deg !important;
+}
+
+//

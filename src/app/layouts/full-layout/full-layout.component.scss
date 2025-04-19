@@ -48,7 +48,7 @@
   width: 95%;
   margin: auto;
   display: block;
-  border-bottom-left-radius: 90px;
+  // border-bottom-left-radius: 90px;
 }
 
 .footer-layout {
@@ -109,9 +109,27 @@
 @media (max-width: 1030px) {
   .rest-layout {
     background-color: white !important;
-    width: 080%;
+    // width:80%;
     margin: auto;
     display: block;
-    border-bottom-left-radius: 90px;
+    // border-bottom-left-radius: 90px;
   }
+}
+
+@media (min-height: 376px)and (max-height:666px) {
+
+  .header-layout {
+
+    height: 18vh;
+  }
+
+}
+
+@media (min-height: 900px) {
+
+  .header-layout {
+
+    height: 10vh;
+  }
+
 }

@@ -41,26 +41,23 @@
 
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 3rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
-          <th class="tw-p-2">اسم المستخدم</th>
+
+          <th class="tw-p-2 tw-text-nowrap">اسم المستخدم</th>
           <th class="tw-p-2">البريد الالكتروني</th>
-          <th class="tw-p-2">رقم الهاتف</th>
-          <th class="tw-p-2">عنوان الشحن</th>
+          <th class="tw-p-2 tw-text-nowrap">رقم الهاتف</th>
+          <th class="tw-p-2 tw-text-nowrap">عنوان الشحن</th>
           <th class="tw-p-2"></th>
         </tr>
       </ng-template>
 
       <ng-template pTemplate="body" let-user>
         <tr>
-          <td>
-            <p-tableCheckbox [value]="user"></p-tableCheckbox>
-          </td>
-          <td class="tw-p-2">{{user.firstName}}</td>
-          <td class="tw-p-2">{{user.email}}</td>
+
+          <td class="tw-p-2 tw-text-nowrap">{{user.firstName}}</td>
+          <td class="tw-p-2 tw-text-nowrap">{{user.email}}</td>
           <td class="tw-p-2">{{user.phoneNumber}}</td>
-          <td class="tw-p-2 tw-flex tw-gap-1 tw-items-center tw-justify-center">
+          <td (click)="showDestinationDialog(user)" class=" tw-p-2 tw-flex tw-gap-1 tw-items-center
+            tw-justify-center">
             <img class="pointer" src="../../../../../assets/images/eye.png" alt="">
             <span class="tw-mr-1 pointer">عرض</span>
           </td>
@@ -75,6 +72,13 @@
     </p-table>
   </div>
 </div>
+
+<p-dialog header="Shipping Address" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+  [resizable]="false">
+  <p>
+    {{destination}}
+  </p>
+</p-dialog>
 
 <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
